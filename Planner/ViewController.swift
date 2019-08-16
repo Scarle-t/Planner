@@ -18,12 +18,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var cellTransform = CGAffineTransform()
     var currentIndex = IndexPath()
     var currentCell = UICollectionViewCell()
-    var currentFrame = CGRect()
     
     @objc func closeCell(_ sender: UIButton){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             sender.alpha = 0
-            self.currentCell.frame = self.currentFrame
+            self.currentCell.transform = self.cellTransform
         }, completion: { _ in
             UIView.performWithoutAnimation {
                 self.plans.reloadItems(at: [self.currentIndex])
@@ -52,13 +51,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         closeBtn.tag = 2
         closeBtn.addTarget(self, action: #selector(closeCell(_:)), for: .touchUpInside)
         
-        closeBtn.frame.origin.x = cell.frame.width - 60
-        closeBtn.frame.origin.y = 10
+        closeBtn.frame.origin.x = view.bounds.width - 85
+        closeBtn.frame.origin.y = 5
         if #available(iOS 13.0, *) {
             closeBtn.setImage(UIImage(systemName: "chevron.down.circle.fill"), for: .normal)
         } else {
             // Fallback on earlier versions
             closeBtn.setTitle("Close", for: .normal)
+            closeBtn.setTitleColor(.blue, for: .normal)
         }
         closeBtn.alpha = 0
         
@@ -71,11 +71,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.cellForItem(at: indexPath)!
         currentCell = cell
         currentIndex = indexPath
-        currentFrame = cell.frame
+        cellTransform = cell.transform
         cell.superview?.bringSubviewToFront(cell)
         
+        let cellRatioX = collectionView.bounds.width / cell.bounds.width
+        let cellRatioY = collectionView.bounds.height / cell.bounds.height
+        
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-            cell.frame = collectionView.bounds
+            cell.transform = .init(scaleX: cellRatioX, y: cellRatioY)
             cell.viewWithTag(2)?.alpha = 1
         }, completion: nil)
         
