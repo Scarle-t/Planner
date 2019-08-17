@@ -16,6 +16,14 @@
 		A6B6F4E4230463C700CFBC02 /* cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B6F4E3230463C700CFBC02 /* cells.swift */; };
 		A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B6F4E62304654C00CFBC02 /* extensions.swift */; };
 		A6C30FFF23089D2500A02761 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C30FFE23089D2500A02761 /* Reachability.swift */; };
+		A6C3100523089DE000A02761 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3100323089DE000A02761 /* JSONParser.swift */; };
+		A6C3100623089DE000A02761 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3100423089DE000A02761 /* Network.swift */; };
+		A6C3101323089E4200A02761 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C3100923089E4100A02761 /* SVRadialGradientLayer.m */; };
+		A6C3101423089E4200A02761 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C3100C23089E4100A02761 /* SVProgressAnimatedView.m */; };
+		A6C3101523089E4200A02761 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C3100F23089E4100A02761 /* SVProgressHUD.m */; };
+		A6C3101623089E4200A02761 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C3101023089E4100A02761 /* SVIndefiniteAnimatedView.m */; };
+		A6C3101723089E4200A02761 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A6C3101123089E4100A02761 /* SVProgressHUD.bundle */; };
+		A6C3101A23089E5D00A02761 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C3101923089E5D00A02761 /* QuartzCore.framework */; };
 		A6E407182305A54D00441C4F /* CardsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +39,20 @@
 		A6B6F4E3230463C700CFBC02 /* cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cells.swift; sourceTree = "<group>"; };
 		A6B6F4E62304654C00CFBC02 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		A6C30FFE23089D2500A02761 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		A6C3100323089DE000A02761 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		A6C3100423089DE000A02761 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		A6C3100923089E4100A02761 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		A6C3100A23089E4100A02761 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		A6C3100B23089E4100A02761 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		A6C3100C23089E4100A02761 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		A6C3100D23089E4100A02761 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		A6C3100E23089E4100A02761 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		A6C3100F23089E4100A02761 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		A6C3101023089E4100A02761 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		A6C3101123089E4100A02761 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		A6C3101223089E4100A02761 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		A6C3101923089E5D00A02761 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A6C3102123089F7E00A02761 /* bridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridgingHeader.h; sourceTree = "<group>"; };
 		A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsCollectionViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6C3101A23089E5D00A02761 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +73,7 @@
 			children = (
 				A694184B23045EEE00559C21 /* Planner */,
 				A694184A23045EEE00559C21 /* Products */,
+				A6C3101823089E5D00A02761 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,15 +88,16 @@
 		A694184B23045EEE00559C21 /* Planner */ = {
 			isa = PBXGroup;
 			children = (
-				A6C3100123089D4900A02761 /* Delegate */,
-				A6C3100023089D3A00A02761 /* Controller */,
-				A6C30FFD23089D1500A02761 /* Action */,
-				A6E407162305A54500441C4F /* Layout */,
-				A6B6F4E52304653D00CFBC02 /* Extension */,
-				A6B6F4E2230463B400CFBC02 /* Cell */,
-				A6C3100223089D5200A02761 /* Storyboard */,
-				A694185523045EF000559C21 /* Assets.xcassets */,
+				A6C3100723089E3400A02761 /* Frameworks */,
 				A694185A23045EF000559C21 /* Info.plist */,
+				A694185523045EF000559C21 /* Assets.xcassets */,
+				A6C30FFD23089D1500A02761 /* Action */,
+				A6B6F4E2230463B400CFBC02 /* Cell */,
+				A6C3100023089D3A00A02761 /* Controller */,
+				A6C3100123089D4900A02761 /* Delegate */,
+				A6B6F4E52304653D00CFBC02 /* Extension */,
+				A6E407162305A54500441C4F /* Layout */,
+				A6C3100223089D5200A02761 /* Storyboard */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -96,6 +121,8 @@
 		A6C30FFD23089D1500A02761 /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				A6C3100323089DE000A02761 /* JSONParser.swift */,
+				A6C3100423089DE000A02761 /* Network.swift */,
 				A6C30FFE23089D2500A02761 /* Reachability.swift */,
 			);
 			path = Action;
@@ -121,10 +148,44 @@
 		A6C3100223089D5200A02761 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				A694185223045EEF00559C21 /* Main.storyboard */,
 				A694185723045EF000559C21 /* LaunchScreen.storyboard */,
+				A694185223045EEF00559C21 /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		A6C3100723089E3400A02761 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6C3102123089F7E00A02761 /* bridgingHeader.h */,
+				A6C3100823089E4100A02761 /* SVProgressHUD */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		A6C3100823089E4100A02761 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A6C3100923089E4100A02761 /* SVRadialGradientLayer.m */,
+				A6C3100A23089E4100A02761 /* SVIndefiniteAnimatedView.h */,
+				A6C3100B23089E4100A02761 /* SVProgressHUD.h */,
+				A6C3100C23089E4100A02761 /* SVProgressAnimatedView.m */,
+				A6C3100D23089E4100A02761 /* SVProgressHUD-Prefix.pch */,
+				A6C3100E23089E4100A02761 /* SVRadialGradientLayer.h */,
+				A6C3100F23089E4100A02761 /* SVProgressHUD.m */,
+				A6C3101023089E4100A02761 /* SVIndefiniteAnimatedView.m */,
+				A6C3101123089E4100A02761 /* SVProgressHUD.bundle */,
+				A6C3101223089E4100A02761 /* SVProgressAnimatedView.h */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		A6C3101823089E5D00A02761 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6C3101923089E5D00A02761 /* QuartzCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A6E407162305A54500441C4F /* Layout */ = {
@@ -196,6 +257,7 @@
 				A694185923045EF000559C21 /* LaunchScreen.storyboard in Resources */,
 				A694185623045EF000559C21 /* Assets.xcassets in Resources */,
 				A694185423045EEF00559C21 /* Main.storyboard in Resources */,
+				A6C3101723089E4200A02761 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,12 +269,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6C30FFF23089D2500A02761 /* Reachability.swift in Sources */,
+				A6C3101623089E4200A02761 /* SVIndefiniteAnimatedView.m in Sources */,
 				A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */,
+				A6C3101423089E4200A02761 /* SVProgressAnimatedView.m in Sources */,
+				A6C3100523089DE000A02761 /* JSONParser.swift in Sources */,
 				A694185123045EEF00559C21 /* ViewController.swift in Sources */,
+				A6C3101523089E4200A02761 /* SVProgressHUD.m in Sources */,
 				A6B6F4E4230463C700CFBC02 /* cells.swift in Sources */,
+				A6C3100623089DE000A02761 /* Network.swift in Sources */,
 				A694184D23045EEF00559C21 /* AppDelegate.swift in Sources */,
 				A6E407182305A54D00441C4F /* CardsCollectionViewLayout.swift in Sources */,
 				A694184F23045EEF00559C21 /* SceneDelegate.swift in Sources */,
+				A6C3101323089E4200A02761 /* SVRadialGradientLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +433,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.scarletsc.Planner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Planner/Frameworks/bridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -383,6 +452,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.scarletsc.Planner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Planner/Frameworks/bridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
