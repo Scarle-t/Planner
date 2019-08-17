@@ -143,7 +143,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.isPagingEnabled = true
         plans.showsHorizontalScrollIndicator = false
         
-        
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg"))
         
     }
     
