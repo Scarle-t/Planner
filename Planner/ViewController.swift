@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: VAR
     let startColors: [CGColor] = [
@@ -27,27 +26,30 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var cellTransform = CGAffineTransform()
     var currentIndex = IndexPath()
-    var currentCell = UICollectionViewCell()
+    var currentCell: planCell = planCell()
     
     //MARK: IBOUTLET
     @IBOutlet weak var plans: UICollectionView!
     @IBOutlet weak var heading: UILabel!
     
     //MARK: OBJC FUNC
-    @objc func closeCell(_ sender: UIButton){
+    @IBAction func closeCell(_ sender: UIButton){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             sender.alpha = 0
             self.currentCell.transform = self.cellTransform
+            self.plans.layer.shadowOpacity = 0.2
         }, completion: { _ in
             UIView.performWithoutAnimation {
                 self.plans.reloadItems(at: [self.currentIndex])
             }
         })
+        currentCell.itemList.isUserInteractionEnabled = false
+        currentCell.itemList.isScrollEnabled = false
         plans.isScrollEnabled = true
         plans.allowsSelection = true
     }
     
-    //MARK: DELEGATE
+    //MARK: DELEGATE - COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
@@ -55,43 +57,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! planCell
         
-        cell.planTitle.text = "Wonderful Trip"
-        
-        let gradLayer = CAGradientLayer()
-        gradLayer.frame = cell.bounds
-        
-        let startColor = startColors[indexPath.row % startColors.count]
-        let endColor = endColors[indexPath.row % endColors.count]
-        
-        gradLayer.colors = [startColor, endColor]
-        
-        cell.gradView.layer.addSublayer(gradLayer)
-        
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 17
         
-        let closeBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        closeBtn.tag = 2
-        closeBtn.addTarget(self, action: #selector(closeCell(_:)), for: .touchUpInside)
+        let gradLayer = CAGradientLayer()
+        gradLayer.frame = cell.bounds
+        let startColor = startColors[indexPath.row % startColors.count]
+        let endColor = endColors[indexPath.row % endColors.count]
+        gradLayer.colors = [startColor, endColor]
+        cell.gradView.layer.addSublayer(gradLayer)
         
-        closeBtn.frame.origin.x = view.bounds.width - 100
-        closeBtn.frame.origin.y = 5
-        if #available(iOS 13.0, *) {
-            closeBtn.setImage(UIImage(systemName: "chevron.down.circle.fill"), for: .normal)
-        } else {
-            // Fallback on earlier versions
-            closeBtn.setTitle("X", for: .normal)
-            closeBtn.setTitleColor(.blue, for: .normal)
-        }
-        closeBtn.alpha = 0
+        cell.itemList.delegate = self
+        cell.itemList.dataSource = self
+        cell.itemList.reloadData()
         
-        cell.contentView.addSubview(closeBtn)
+        cell.planTitle.text = "Wonderful Trip"
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)!
+        let cell = collectionView.cellForItem(at: indexPath)! as! planCell
         currentCell = cell
         currentIndex = indexPath
         cellTransform = cell.transform
@@ -102,9 +88,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             cell.transform = .init(scaleX: cellRatioX, y: cellRatioY)
-            cell.viewWithTag(2)?.alpha = 1
+            cell.closeBtn.alpha = 1
+            collectionView.layer.shadowOpacity = 0.0
         }, completion: nil)
         
+        cell.itemList.isUserInteractionEnabled = true
+        cell.itemList.isScrollEnabled = true
         collectionView.isScrollEnabled = false
         collectionView.allowsSelection = false
     }
@@ -128,6 +117,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }, completion: nil)
     }
     
+    //MARK: DELEGATE - TABLE VIEW
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 15
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = "Item"
+        cell.textLabel?.textColor = .black
+        cell.accessoryType = .disclosureIndicator
+        
+        return cell
+    }
+    
     //MARK: VIEW LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,7 +151,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         plans.layer.masksToBounds = true
         plans.layer.shadowColor = UIColor.lightGray.cgColor
-        plans.layer.shadowOpacity = 0.4
+        plans.layer.shadowOpacity = 0.2
         
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg"))
         

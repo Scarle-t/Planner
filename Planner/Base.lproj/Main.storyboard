@@ -21,7 +21,7 @@
                                 <rect key="frame" x="27" y="-49" width="367" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="48"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OwN-VK-YoJ">
@@ -45,19 +45,49 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labeldasdsa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riM-O8-KBp">
-                                                    <rect key="frame" x="40" y="8" width="158.5" height="37"/>
+                                                <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Na7-es-6wT">
+                                                    <rect key="frame" x="0.0" y="53" width="414" height="47"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="FSR-nz-ns0">
+                                                            <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FSR-nz-ns0" id="RSS-1y-gGz">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </tableViewCellContentView>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                </tableView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riM-O8-KBp">
+                                                    <rect key="frame" x="40" y="8" width="68.5" height="37"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="28"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" alpha="0.0" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWP-Ff-z8y">
+                                                    <rect key="frame" x="359" y="5" width="39" height="30"/>
+                                                    <state key="normal" title="Close"/>
+                                                    <connections>
+                                                        <action selector="closeCell:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e4K-nQ-oJm"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="riM-O8-KBp" secondAttribute="trailing" constant="20" symbolic="YES" id="EDB-b3-V3u"/>
+                                                <constraint firstAttribute="bottom" secondItem="Na7-es-6wT" secondAttribute="bottom" id="90K-Io-09Q"/>
+                                                <constraint firstAttribute="trailing" secondItem="rWP-Ff-z8y" secondAttribute="trailing" constant="16" id="9ja-3N-VPl"/>
+                                                <constraint firstItem="Na7-es-6wT" firstAttribute="top" secondItem="riM-O8-KBp" secondAttribute="bottom" constant="8" id="CEX-TS-oNo"/>
                                                 <constraint firstItem="riM-O8-KBp" firstAttribute="leading" secondItem="dRP-0L-chm" secondAttribute="leading" constant="40" id="GTf-Md-asd"/>
+                                                <constraint firstItem="rWP-Ff-z8y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="riM-O8-KBp" secondAttribute="trailing" constant="8" symbolic="YES" id="JF6-R7-DpS"/>
                                                 <constraint firstAttribute="trailing" secondItem="LA4-AJ-fQh" secondAttribute="trailing" id="Qzj-8I-WGW"/>
                                                 <constraint firstItem="LA4-AJ-fQh" firstAttribute="top" secondItem="dRP-0L-chm" secondAttribute="top" id="X4f-Fg-MUM"/>
                                                 <constraint firstItem="riM-O8-KBp" firstAttribute="top" secondItem="dRP-0L-chm" secondAttribute="top" constant="8" id="eEN-mP-rsm"/>
+                                                <constraint firstItem="Na7-es-6wT" firstAttribute="leading" secondItem="dRP-0L-chm" secondAttribute="leading" id="geS-4p-g4e"/>
+                                                <constraint firstAttribute="trailing" secondItem="Na7-es-6wT" secondAttribute="trailing" id="i5n-oF-I4s"/>
+                                                <constraint firstItem="rWP-Ff-z8y" firstAttribute="top" secondItem="dRP-0L-chm" secondAttribute="top" constant="5" id="oPz-la-caH"/>
                                                 <constraint firstAttribute="bottom" secondItem="LA4-AJ-fQh" secondAttribute="bottom" id="yT0-tA-0Pu"/>
                                                 <constraint firstItem="LA4-AJ-fQh" firstAttribute="leading" secondItem="dRP-0L-chm" secondAttribute="leading" id="zwp-lr-xyS"/>
                                             </constraints>
@@ -65,7 +95,9 @@
                                         <gestureRecognizers/>
                                         <size key="customSize" width="414" height="100"/>
                                         <connections>
+                                            <outlet property="closeBtn" destination="rWP-Ff-z8y" id="Hov-hY-oxw"/>
                                             <outlet property="gradView" destination="LA4-AJ-fQh" id="UJw-zN-h8s"/>
+                                            <outlet property="itemList" destination="Na7-es-6wT" id="hzl-DF-5lD"/>
                                             <outlet property="planTitle" destination="riM-O8-KBp" id="OA7-d5-AZB"/>
                                         </connections>
                                     </collectionViewCell>

@@ -12,4 +12,6 @@ import UIKit
 class planCell: UICollectionViewCell{
     @IBOutlet weak var planTitle: UILabel!
     @IBOutlet weak var gradView: UIView!
+    @IBOutlet weak var itemList: UITableView!
+    @IBOutlet weak var closeBtn: UIButton!
 }
