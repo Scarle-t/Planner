@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    
+    //MARK: VAR
     let startColors: [CGColor] = [
         "ADFFF9".uiColor.cgColor,
         "C6FFAD".uiColor.cgColor,
@@ -23,13 +25,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         "EA7C7C".uiColor.cgColor,
     ]
     
-    @IBOutlet weak var plans: UICollectionView!
-    @IBOutlet weak var heading: UILabel!
-    
     var cellTransform = CGAffineTransform()
     var currentIndex = IndexPath()
     var currentCell = UICollectionViewCell()
     
+    //MARK: IBOUTLET
+    @IBOutlet weak var plans: UICollectionView!
+    @IBOutlet weak var heading: UILabel!
+    
+    //MARK: OBJC FUNC
     @objc func closeCell(_ sender: UIButton){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             sender.alpha = 0
@@ -43,6 +47,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.allowsSelection = true
     }
     
+    //MARK: DELEGATE
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
@@ -51,8 +56,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! planCell
         
         cell.planTitle.text = "Wonderful Trip"
-        
-//        cell.contentView.backgroundColor = colors[indexPath.row % colors.count]
         
         let gradLayer = CAGradientLayer()
         gradLayer.frame = cell.bounds
@@ -66,8 +69,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 17
-        cell.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.layer.shadowOpacity = 0.7
         
         let closeBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         closeBtn.tag = 2
@@ -126,7 +127,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cell.transform = self.cellTransform
         }, completion: nil)
     }
-
+    
+    //MARK: VIEW LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -143,6 +145,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.isPagingEnabled = true
         plans.showsHorizontalScrollIndicator = false
         
+        plans.layer.masksToBounds = true
+        plans.layer.shadowColor = UIColor.lightGray.cgColor
+        plans.layer.shadowOpacity = 0.4
+        
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg"))
         
     }
@@ -152,7 +158,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         plans.transform = .init(translationX: 0, y: 20)
         
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn, animations: {
             self.heading.center.y = self.view.safeAreaInsets.top + (self.plans.frame.origin.y - self.view.safeAreaInsets.top) / 2
         }, completion: { _ in
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
