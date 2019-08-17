@@ -45,6 +45,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         })
         currentCell.itemList.isUserInteractionEnabled = false
         currentCell.itemList.isScrollEnabled = false
+        currentCell.itemList.allowsSelection = false
+        currentCell.itemList.tag = -1
+        currentCell.itemList.reloadData()
         plans.isScrollEnabled = true
         plans.allowsSelection = true
     }
@@ -69,9 +72,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         cell.itemList.delegate = self
         cell.itemList.dataSource = self
+        cell.itemList.allowsSelection = false
+        cell.itemList.tag = -1
         cell.itemList.reloadData()
         
-        cell.planTitle.text = "Wonderful Trip"
+        cell.planTitle.text = "Title"
+        cell.author.text = "Author"
         
         return cell
     }
@@ -94,6 +100,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         cell.itemList.isUserInteractionEnabled = true
         cell.itemList.isScrollEnabled = true
+        cell.itemList.allowsSelection = true
+        cell.itemList.tag = 0
+        cell.itemList.reloadData()
         collectionView.isScrollEnabled = false
         collectionView.allowsSelection = false
     }
@@ -125,11 +134,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
+        switch tableView.tag{
+        case -1:
+            cell.selectionStyle = .none
+        case 0:
+            cell.selectionStyle = .gray
+        default:
+            break
+        }
+        
         cell.textLabel?.text = "Item"
         cell.textLabel?.textColor = .black
         cell.accessoryType = .disclosureIndicator
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setSelected(false, animated: true)
     }
     
     //MARK: VIEW LIFECYCLE
@@ -163,7 +186,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.transform = .init(translationX: 0, y: 20)
         
         UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn, animations: {
-            self.heading.center.y = self.view.safeAreaInsets.top + (self.plans.frame.origin.y - self.view.safeAreaInsets.top) / 2
+            self.heading.center.y = (self.view.safeAreaInsets.top + (self.plans.frame.origin.y - self.view.safeAreaInsets.top) / 2) - 7
         }, completion: { _ in
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
                 self.plans.transform = .identity

@@ -15,6 +15,7 @@
 		A694185923045EF000559C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A694185723045EF000559C21 /* LaunchScreen.storyboard */; };
 		A6B6F4E4230463C700CFBC02 /* cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B6F4E3230463C700CFBC02 /* cells.swift */; };
 		A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B6F4E62304654C00CFBC02 /* extensions.swift */; };
+		A6C30FFF23089D2500A02761 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C30FFE23089D2500A02761 /* Reachability.swift */; };
 		A6E407182305A54D00441C4F /* CardsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		A694185A23045EF000559C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6B6F4E3230463C700CFBC02 /* cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cells.swift; sourceTree = "<group>"; };
 		A6B6F4E62304654C00CFBC02 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		A6C30FFE23089D2500A02761 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsCollectionViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,13 +45,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A62B0473230461A800F88BF0 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		A694184023045EEE00559C21 = {
 			isa = PBXGroup;
 			children = (
@@ -69,16 +64,14 @@
 		A694184B23045EEE00559C21 /* Planner */ = {
 			isa = PBXGroup;
 			children = (
+				A6C3100123089D4900A02761 /* Delegate */,
+				A6C3100023089D3A00A02761 /* Controller */,
+				A6C30FFD23089D1500A02761 /* Action */,
 				A6E407162305A54500441C4F /* Layout */,
 				A6B6F4E52304653D00CFBC02 /* Extension */,
 				A6B6F4E2230463B400CFBC02 /* Cell */,
-				A62B0473230461A800F88BF0 /* Resources */,
-				A694184C23045EEF00559C21 /* AppDelegate.swift */,
-				A694184E23045EEF00559C21 /* SceneDelegate.swift */,
-				A694185023045EEF00559C21 /* ViewController.swift */,
-				A694185223045EEF00559C21 /* Main.storyboard */,
+				A6C3100223089D5200A02761 /* Storyboard */,
 				A694185523045EF000559C21 /* Assets.xcassets */,
-				A694185723045EF000559C21 /* LaunchScreen.storyboard */,
 				A694185A23045EF000559C21 /* Info.plist */,
 			);
 			path = Planner;
@@ -98,6 +91,40 @@
 				A6B6F4E62304654C00CFBC02 /* extensions.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		A6C30FFD23089D1500A02761 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				A6C30FFE23089D2500A02761 /* Reachability.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		A6C3100023089D3A00A02761 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A694185023045EEF00559C21 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A6C3100123089D4900A02761 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				A694184C23045EEF00559C21 /* AppDelegate.swift */,
+				A694184E23045EEF00559C21 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		A6C3100223089D5200A02761 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A694185223045EEF00559C21 /* Main.storyboard */,
+				A694185723045EF000559C21 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		A6E407162305A54500441C4F /* Layout */ = {
@@ -179,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6C30FFF23089D2500A02761 /* Reachability.swift in Sources */,
 				A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */,
 				A694185123045EEF00559C21 /* ViewController.swift in Sources */,
 				A6B6F4E4230463C700CFBC02 /* cells.swift in Sources */,
