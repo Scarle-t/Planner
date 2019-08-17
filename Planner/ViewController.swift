@@ -10,7 +10,18 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let colors: [UIColor] = ["ADFFF9".uiColor, "C6FFAD".uiColor, "FCFFAD".uiColor, "FFD0AD".uiColor]
+    let startColors: [CGColor] = [
+        "ADFFF9".uiColor.cgColor,
+        "C6FFAD".uiColor.cgColor,
+        "FCFFAD".uiColor.cgColor,
+        "FFD0AD".uiColor.cgColor,
+    ]
+    let endColors: [CGColor] = [
+        "7CD5EA".uiColor.cgColor,
+        "7CEAAB".uiColor.cgColor,
+        "EACC7C".uiColor.cgColor,
+        "EA7C7C".uiColor.cgColor,
+    ]
     
     @IBOutlet weak var plans: UICollectionView!
     @IBOutlet weak var heading: UILabel!
@@ -41,7 +52,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         cell.planTitle.text = "Wonderful Trip"
         
-        cell.contentView.backgroundColor = colors[indexPath.row % colors.count]
+//        cell.contentView.backgroundColor = colors[indexPath.row % colors.count]
+        
+        let gradLayer = CAGradientLayer()
+        gradLayer.frame = cell.bounds
+        
+        let startColor = startColors[indexPath.row % startColors.count]
+        let endColor = endColors[indexPath.row % endColors.count]
+        
+        gradLayer.colors = [startColor, endColor]
+        
+        cell.gradView.layer.addSublayer(gradLayer)
+        
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 17
         cell.layer.shadowColor = UIColor.lightGray.cgColor
@@ -51,18 +73,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         closeBtn.tag = 2
         closeBtn.addTarget(self, action: #selector(closeCell(_:)), for: .touchUpInside)
         
-        closeBtn.frame.origin.x = view.bounds.width - 85
+        closeBtn.frame.origin.x = view.bounds.width - 100
         closeBtn.frame.origin.y = 5
         if #available(iOS 13.0, *) {
             closeBtn.setImage(UIImage(systemName: "chevron.down.circle.fill"), for: .normal)
         } else {
             // Fallback on earlier versions
-            closeBtn.setTitle("Close", for: .normal)
+            closeBtn.setTitle("X", for: .normal)
             closeBtn.setTitleColor(.blue, for: .normal)
         }
         closeBtn.alpha = 0
         
-        cell.addSubview(closeBtn)
+        cell.contentView.addSubview(closeBtn)
         
         return cell
     }

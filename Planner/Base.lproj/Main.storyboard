@@ -41,8 +41,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riM-O8-KBp">
-                                                    <rect key="frame" x="40" y="8" width="68.5" height="37"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LA4-AJ-fQh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labeldasdsa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riM-O8-KBp">
+                                                    <rect key="frame" x="40" y="8" width="158.5" height="37"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="28"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -51,12 +55,17 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="riM-O8-KBp" secondAttribute="trailing" constant="20" symbolic="YES" id="EDB-b3-V3u"/>
                                                 <constraint firstItem="riM-O8-KBp" firstAttribute="leading" secondItem="dRP-0L-chm" secondAttribute="leading" constant="40" id="GTf-Md-asd"/>
+                                                <constraint firstAttribute="trailing" secondItem="LA4-AJ-fQh" secondAttribute="trailing" id="Qzj-8I-WGW"/>
+                                                <constraint firstItem="LA4-AJ-fQh" firstAttribute="top" secondItem="dRP-0L-chm" secondAttribute="top" id="X4f-Fg-MUM"/>
                                                 <constraint firstItem="riM-O8-KBp" firstAttribute="top" secondItem="dRP-0L-chm" secondAttribute="top" constant="8" id="eEN-mP-rsm"/>
+                                                <constraint firstAttribute="bottom" secondItem="LA4-AJ-fQh" secondAttribute="bottom" id="yT0-tA-0Pu"/>
+                                                <constraint firstItem="LA4-AJ-fQh" firstAttribute="leading" secondItem="dRP-0L-chm" secondAttribute="leading" id="zwp-lr-xyS"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <gestureRecognizers/>
                                         <size key="customSize" width="414" height="100"/>
                                         <connections>
+                                            <outlet property="gradView" destination="LA4-AJ-fQh" id="UJw-zN-h8s"/>
                                             <outlet property="planTitle" destination="riM-O8-KBp" id="OA7-d5-AZB"/>
                                         </connections>
                                     </collectionViewCell>

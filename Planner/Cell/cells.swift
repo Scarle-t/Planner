@@ -11,4 +11,5 @@ import UIKit
 //MARK: planCell
 class planCell: UICollectionViewCell{
     @IBOutlet weak var planTitle: UILabel!
+    @IBOutlet weak var gradView: UIView!
 }
