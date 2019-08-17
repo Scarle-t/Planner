@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, NetworkDelegate {
     
     //MARK: VAR
     let startColors: [CGColor] = [
@@ -23,6 +23,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         "EACC7C".uiColor.cgColor,
         "EA7C7C".uiColor.cgColor,
     ]
+    let network = Network()
     
     var cellTransform = CGAffineTransform()
     var currentIndex = IndexPath()
@@ -51,10 +52,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.isScrollEnabled = true
         plans.allowsSelection = true
     }
+    //MARK: DELEGATE - NETWORK
+    func ResponseHandle(data: Data) {
+        SVProgressHUD.dismiss()
+        let result = JSONParser().parse(data)!
+        Session.shared.setProjects(with: result)
+        DispatchQueue.main.async {
+            self.plans.reloadData()
+            UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn, animations: {
+                self.heading.center.y = (self.view.safeAreaInsets.top + (self.plans.frame.origin.y - self.view.safeAreaInsets.top) / 2) - 7
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+                    self.plans.transform = .identity
+                    self.plans.alpha = 1
+                }, completion: nil)
+            })
+        }
+    }
     
     //MARK: DELEGATE - COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return Session.shared.getProjects()?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -76,8 +94,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.itemList.tag = -1
         cell.itemList.reloadData()
         
-        cell.planTitle.text = "Title"
-        cell.author.text = "Author"
+        let project = Session.shared.getProjects()?[indexPath.row]
+        
+        cell.planTitle.text = project?.title
+        cell.author.text = project?.author
         
         return cell
     }
@@ -128,7 +148,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: DELEGATE - TABLE VIEW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -155,29 +175,34 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell?.setSelected(false, animated: true)
     }
     
-    //MARK: VIEW LIFECYCLE
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+    //MARK: SETUP
+    func delegate(){
         plans.delegate = self
         plans.dataSource = self
-        
+        network.delegate = self
+    }
+    func layout(){
         plans.collectionViewLayout = CardsCollectionViewLayout()
-        
         let layout = plans.collectionViewLayout as! CardsCollectionViewLayout
         layout.itemSize = .init(width: self.view.bounds.width * 0.8, height: self.view.bounds.height * 0.7)
         layout.spacing = 30
-        
         plans.isPagingEnabled = true
         plans.showsHorizontalScrollIndicator = false
-        
         plans.layer.masksToBounds = true
         plans.layer.shadowColor = UIColor.lightGray.cgColor
         plans.layer.shadowOpacity = 0.2
         
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg"))
-        
+    }
+    
+    //MARK: VIEW LIFECYCLE
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        delegate()
+        layout()
+        SVProgressHUD.show()
+        network.send(url: "https://api.scarletsc.net/aquori/projects.php", method: "GET", query: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -185,15 +210,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         plans.transform = .init(translationX: 0, y: 20)
         
-        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn, animations: {
-            self.heading.center.y = (self.view.safeAreaInsets.top + (self.plans.frame.origin.y - self.view.safeAreaInsets.top) / 2) - 7
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-                self.plans.transform = .identity
-                self.plans.alpha = 1
-            }, completion: nil)
-        })
-        plans.reloadData()
     }
 
 }

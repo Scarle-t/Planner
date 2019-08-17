@@ -25,6 +25,9 @@
 		A6C3101723089E4200A02761 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A6C3101123089E4100A02761 /* SVProgressHUD.bundle */; };
 		A6C3101A23089E5D00A02761 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C3101923089E5D00A02761 /* QuartzCore.framework */; };
 		A6E407182305A54D00441C4F /* CardsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */; };
+		A6F838EB2308A14600818A76 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F838EA2308A14600818A76 /* Project.swift */; };
+		A6F838ED2308A15000818A76 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F838EC2308A15000818A76 /* Item.swift */; };
+		A6F838EF2308A1F200818A76 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F838EE2308A1F200818A76 /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		A6C3101923089E5D00A02761 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A6C3102123089F7E00A02761 /* bridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridgingHeader.h; sourceTree = "<group>"; };
 		A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsCollectionViewLayout.swift; sourceTree = "<group>"; };
+		A6F838EA2308A14600818A76 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		A6F838EC2308A15000818A76 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		A6F838EE2308A1F200818A76 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +94,7 @@
 		A694184B23045EEE00559C21 /* Planner */ = {
 			isa = PBXGroup;
 			children = (
-				A6C3100723089E3400A02761 /* Frameworks */,
+				A6F838E92308A13500818A76 /* Object */,
 				A694185A23045EF000559C21 /* Info.plist */,
 				A694185523045EF000559C21 /* Assets.xcassets */,
 				A6C30FFD23089D1500A02761 /* Action */,
@@ -96,6 +102,7 @@
 				A6C3100023089D3A00A02761 /* Controller */,
 				A6C3100123089D4900A02761 /* Delegate */,
 				A6B6F4E52304653D00CFBC02 /* Extension */,
+				A6C3100723089E3400A02761 /* Frameworks */,
 				A6E407162305A54500441C4F /* Layout */,
 				A6C3100223089D5200A02761 /* Storyboard */,
 			);
@@ -124,6 +131,7 @@
 				A6C3100323089DE000A02761 /* JSONParser.swift */,
 				A6C3100423089DE000A02761 /* Network.swift */,
 				A6C30FFE23089D2500A02761 /* Reachability.swift */,
+				A6F838EE2308A1F200818A76 /* Session.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -194,6 +202,15 @@
 				A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		A6F838E92308A13500818A76 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				A6F838EA2308A14600818A76 /* Project.swift */,
+				A6F838EC2308A15000818A76 /* Item.swift */,
+			);
+			path = Object;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,11 +290,14 @@
 				A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */,
 				A6C3101423089E4200A02761 /* SVProgressAnimatedView.m in Sources */,
 				A6C3100523089DE000A02761 /* JSONParser.swift in Sources */,
+				A6F838EB2308A14600818A76 /* Project.swift in Sources */,
 				A694185123045EEF00559C21 /* ViewController.swift in Sources */,
 				A6C3101523089E4200A02761 /* SVProgressHUD.m in Sources */,
 				A6B6F4E4230463C700CFBC02 /* cells.swift in Sources */,
 				A6C3100623089DE000A02761 /* Network.swift in Sources */,
+				A6F838ED2308A15000818A76 /* Item.swift in Sources */,
 				A694184D23045EEF00559C21 /* AppDelegate.swift in Sources */,
+				A6F838EF2308A1F200818A76 /* Session.swift in Sources */,
 				A6E407182305A54D00441C4F /* CardsCollectionViewLayout.swift in Sources */,
 				A694184F23045EEF00559C21 /* SceneDelegate.swift in Sources */,
 				A6C3101323089E4200A02761 /* SVRadialGradientLayer.m in Sources */,
