@@ -43,15 +43,15 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" focusStyle="custom" textLabel="Fw7-t4-FzB" style="IBUITableViewCellStyleDefault" id="FSR-nz-ns0">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" focusStyle="custom" textLabel="Fw7-t4-FzB" style="IBUITableViewCellStyleDefault" id="FSR-nz-ns0">
                                                             <rect key="frame" x="0.0" y="55.5" width="414" height="46"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FSR-nz-ns0" id="RSS-1y-gGz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382.5" height="46"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" id="Fw7-t4-FzB">
-                                                                        <rect key="frame" x="20" y="0.0" width="354.5" height="46"/>
+                                                                        <rect key="frame" x="20" y="0.0" width="374" height="46"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

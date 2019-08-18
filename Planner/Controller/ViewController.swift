@@ -28,6 +28,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var currentIndex = IndexPath()
     var currentCell: planCell = planCell()
     var tableProject = [UITableView : Project]()
+    var itemTransform = CGAffineTransform()
     
     //MARK: IBOUTLET
     @IBOutlet weak var plans: UICollectionView!
@@ -172,14 +173,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        switch tableView.tag{
-        case -1:
-            cell.selectionStyle = .none
-        case 0:
-            cell.selectionStyle = .gray
-        default:
-            break
-        }
+//        switch tableView.tag{
+//        case -1:
+//            cell.selectionStyle = .none
+//        case 0:
+//            cell.selectionStyle = .gray
+//        default:
+//            break
+//        }
         
         let item = tableProject[tableView]?.items?[indexPath.row]
         
@@ -191,6 +192,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.setSelected(false, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        itemTransform = cell!.transform
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            cell?.transform = .init(scaleX: 0.9, y: 0.9)
+        }, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            cell?.transform = self.itemTransform
+        }, completion: nil)
     }
     
     //MARK: SETUP
