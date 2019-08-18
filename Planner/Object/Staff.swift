@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  Staff.swift
 //  Planner
 //
 //  Created by Scarlet on A2019/A/18.
@@ -8,25 +8,22 @@
 
 import Foundation
 
-class Item: NSObject{
+class Staff: NSObject{
     
     //MARK: ATTRIBUTE
-    var IID: Int
-    var type: String
-    var content: String
+    var SID: Int
+    var Name: String
     
     //MARK: INIT
     override init(){
-        IID = 0
-        type = ""
-        content = ""
+        SID = 0
+        Name = ""
     }
     
     //MARK: PARSE
     func parse(_ data: NSDictionary){
-        IID = Int(data["IID"] as! String)!
-        type = data["type"] as! String
-        content = data["Content"] as! String
+        SID = Int(data["SID"] as! String)!
+        Name = data["Name"] as! String
     }
     
 }

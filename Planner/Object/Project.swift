@@ -14,6 +14,7 @@ class Project: NSObject{
     var PID: Int
     var title: String
     var author: String
+    var items: [Item]?
     
     //MARK: INIT
     override init(){

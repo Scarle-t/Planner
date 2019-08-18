@@ -23,11 +23,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         "EACC7C".uiColor.cgColor,
         "EA7C7C".uiColor.cgColor,
     ]
-    let network = Network()
     
     var cellTransform = CGAffineTransform()
     var currentIndex = IndexPath()
     var currentCell: planCell = planCell()
+    var tableProject = [UITableView : Project]()
     
     //MARK: IBOUTLET
     @IBOutlet weak var plans: UICollectionView!
@@ -56,7 +56,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func ResponseHandle(data: Data) {
         SVProgressHUD.dismiss()
         let result = JSONParser().parse(data)!
-        Session.shared.setProjects(with: result)
+        session.setProjects(with: result)
         DispatchQueue.main.async {
             self.plans.reloadData()
             UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn, animations: {
@@ -72,7 +72,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: DELEGATE - COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Session.shared.getProjects()?.count ?? 0
+        return session.getProjects()?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -94,7 +94,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.itemList.tag = -1
         cell.itemList.reloadData()
         
-        let project = Session.shared.getProjects()?[indexPath.row]
+        let project = session.getProjects()?[indexPath.row]
+        
+        tableProject[cell.itemList] = project
+        
+        network.send(url: baseURL + "items.php?PID=\(project!.PID)", method: "GET", query: nil) { (data) in
+            guard let d = data else {return}
+            let result = json.parse(d)!
+            var items = [Item]()
+            items.removeAll()
+            for item in result{
+                let i = Item()
+                i.parse(item)
+                items.append(i)
+            }
+            project?.items = items
+            DispatchQueue.main.async {
+                cell.itemList.reloadData()
+            }
+        }
         
         cell.planTitle.text = project?.title
         cell.author.text = project?.author
@@ -148,7 +166,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: DELEGATE - TABLE VIEW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return tableProject[tableView]?.items?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -163,9 +181,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             break
         }
         
-        cell.textLabel?.text = "Item"
-        cell.textLabel?.textColor = .black
-        cell.accessoryType = .disclosureIndicator
+        let item = tableProject[tableView]?.items?[indexPath.row]
+        
+        cell.textLabel?.text = item?.content
         
         return cell
     }
@@ -202,7 +220,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         delegate()
         layout()
         SVProgressHUD.show()
-        network.send(url: "https://api.scarletsc.net/aquori/projects.php", method: "GET", query: nil)
+        network.send(url: baseURL + "projects.php", method: "GET", query: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

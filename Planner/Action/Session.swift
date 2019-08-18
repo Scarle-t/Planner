@@ -26,5 +26,21 @@ class Session: NSObject{
         }
         projects = projs
     }
+    func clearProjects(){
+        projects?.removeAll()
+    }
+    
+    fileprivate var user: Staff?
+    func getUser()->Staff?{
+        return user
+    }
+    func setUser(with value: NSDictionary){
+        let u = Staff()
+        u.parse(value)
+        user = u
+    }
+    func clearUser(){
+        user = nil
+    }
     
 }

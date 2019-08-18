@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CommonCrypto
 
 extension String{
     var uiColor: UIColor{
@@ -31,5 +32,14 @@ extension String{
         
         return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: 1.0)
         
+    }
+    func sha1() -> String {
+        let data = Data(self.utf8)
+        var digest = [UInt8](repeating: 0, count:Int(CC_SHA1_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA1($0.baseAddress, CC_LONG(data.count), &digest)
+        }
+        let hexBytes = digest.map { String(format: "%02hhx", $0) }
+        return hexBytes.joined()
     }
 }
