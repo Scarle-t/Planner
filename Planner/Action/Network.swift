@@ -34,6 +34,7 @@ class Network: NSObject{
     
     weak var delegate: NetworkDelegate?
     
+    /// Send Network Request with Delegation
     func send(url action: String, method: String, query content: String?){
         
         if Reachability().isConnectedToNetwork(){
@@ -61,6 +62,7 @@ class Network: NSObject{
         }
     }
     
+    /// Send Network Request with Completion Handler
     func send(url action: String, method: String, query content: String?, completion: ((Data?)->())?){
         
         if Reachability().isConnectedToNetwork(){

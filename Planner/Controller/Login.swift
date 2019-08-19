@@ -28,7 +28,7 @@ class Login: UIViewController, NetworkDelegate{
         
         var query: String? = "login=\(acText)&pwd=\(pwText)"
         query = query?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        
+        SVProgressHUD.show()
         network.send(url: baseURL + "login.php", method: "POST", query: query)
         
     }
@@ -42,6 +42,7 @@ class Login: UIViewController, NetworkDelegate{
             if (item["Result"] as! String) == "OK"{
                 session.setUser(with: item)
                 DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
                     let plan = self.storyboard?.instantiateViewController(withIdentifier: "plan") as! ViewController
                     
                     plan.modalPresentationStyle = .fullScreen
@@ -49,6 +50,7 @@ class Login: UIViewController, NetworkDelegate{
                 }
             }else if (item["Result"] as! String) == "Fail"{
                 DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
                     SVProgressHUD.showError(withStatus: item["Reason"] as? String)
                     SVProgressHUD.dismiss(withDelay: 3)
                 }

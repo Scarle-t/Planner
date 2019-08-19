@@ -29,10 +29,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var currentCell: planCell = planCell()
     var tableProject = [UITableView : Project]()
     var itemTransform = CGAffineTransform()
+    var initialPlanY = CGFloat.zero
+    var initial = CGPoint.zero
     
     //MARK: IBOUTLET
     @IBOutlet weak var plans: UICollectionView!
     @IBOutlet weak var heading: UILabel!
+    @IBOutlet weak var refreshIndicator: UIActivityIndicatorView!
     
     //MARK: OBJC FUNC
     @IBAction func closeCell(_ sender: UIButton){
@@ -53,21 +56,48 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.isScrollEnabled = true
         plans.allowsSelection = true
     }
+    @objc func refreshList(){
+        SVProgressHUD.show()
+        network.send(url: baseURL + "projects.php", method: "GET", query: nil)
+    }
+    @objc func panRefresh(_ sender: UIPanGestureRecognizer){
+        let touch = sender.location(in: plans.window)
+        
+        switch sender.state {
+        case .began:
+            initial = touch
+        case .changed:
+            if touch.y > initial.y{
+                plans.frame.origin.y = initialPlanY + (touch.y - initial.y)
+                refreshIndicator.alpha = ((touch.y - initial.y) / touch.y) * 2.3
+            }
+        case .ended, .cancelled:
+            UIView.animate(withDuration: 0.2) {
+                self.plans.frame.origin.y = self.initialPlanY
+            }
+            if touch.y - initial.y > plans.frame.height / 4{
+                refreshIndicator.alpha = 1
+                refreshIndicator.startAnimating()
+                refreshList()
+            } else {
+                refreshIndicator.alpha = 0
+            }
+        case .failed, .possible:
+            break
+        @unknown default:
+            break
+        }
+    }
+    
     //MARK: DELEGATE - NETWORK
     func ResponseHandle(data: Data) {
-        SVProgressHUD.dismiss()
         let result = JSONParser().parse(data)!
         session.setProjects(with: result)
         DispatchQueue.main.async {
+            SVProgressHUD.dismiss()
+            self.refreshIndicator.stopAnimating()
+            self.refreshIndicator.alpha = 0
             self.plans.reloadData()
-            UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn, animations: {
-                self.heading.center.y = (self.view.safeAreaInsets.top + (self.plans.frame.origin.y - self.view.safeAreaInsets.top) / 2) - 7
-            }, completion: { _ in
-                UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-                    self.plans.transform = .identity
-                    self.plans.alpha = 1
-                }, completion: nil)
-            })
         }
     }
     
@@ -78,6 +108,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! planCell
+        
+        let pan = PanDirectionGestureRecognizer(direction: .vertical, target: self, action: #selector(panRefresh(_:)))
+        cell.addGestureRecognizer(pan)
         
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 17
@@ -131,11 +164,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cellRatioX = collectionView.bounds.width / cell.bounds.width
         let cellRatioY = collectionView.bounds.height / cell.bounds.height
         
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-            cell.transform = .init(scaleX: cellRatioX, y: cellRatioY)
-            cell.closeBtn.alpha = 1
-            collectionView.layer.shadowOpacity = 0.0
-        }, completion: nil)
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+            cell.transform = .identity
+        }) { _ in
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+                cell.transform = .init(scaleX: cellRatioX, y: cellRatioY)
+                cell.closeBtn.alpha = 1
+                collectionView.layer.shadowOpacity = 0.0
+            }, completion: nil)
+        }
         
         cell.itemList.isUserInteractionEnabled = true
         cell.itemList.isScrollEnabled = true
@@ -173,39 +210,37 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-//        switch tableView.tag{
-//        case -1:
-//            cell.selectionStyle = .none
-//        case 0:
-//            cell.selectionStyle = .gray
-//        default:
-//            break
-//        }
+        guard let item = tableProject[tableView]?.items, item.count != 0 else {return cell}
         
-        let item = tableProject[tableView]?.items?[indexPath.row]
-        
-        cell.textLabel?.text = item?.content
+        cell.textLabel?.text = item[indexPath.row].content
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.setSelected(false, animated: true)
+        itemTransform = cell!.textLabel!.transform
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+            cell?.textLabel?.transform = .init(scaleX: 0.9, y: 0.9)
+        }) { _ in
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+                cell?.textLabel?.transform = self.itemTransform
+            }, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        itemTransform = cell!.transform
+        itemTransform = cell!.textLabel!.transform
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-            cell?.transform = .init(scaleX: 0.9, y: 0.9)
+            cell?.textLabel?.transform = .init(scaleX: 0.9, y: 0.9)
         }, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-            cell?.transform = self.itemTransform
+            cell?.textLabel?.transform = self.itemTransform
         }, completion: nil)
     }
     
@@ -226,6 +261,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.layer.shadowColor = UIColor.lightGray.cgColor
         plans.layer.shadowOpacity = 0.2
         
+        refreshIndicator.frame.origin.x = heading.frame.maxX
+        
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg"))
     }
     
@@ -235,14 +272,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // Do any additional setup after loading the view.
         delegate()
         layout()
-        SVProgressHUD.show()
-        network.send(url: baseURL + "projects.php", method: "GET", query: nil)
+        refreshList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         plans.transform = .init(translationX: 0, y: 20)
+        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn, animations: {
+            self.heading.center.y = (self.view.safeAreaInsets.top + (self.plans.frame.origin.y - self.view.safeAreaInsets.top) / 2) - 7
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+                self.plans.transform = .identity
+                self.plans.alpha = 1
+            }, completion: nil)
+        })
+        refreshIndicator.center.y = heading.center.y
+        initialPlanY = plans.frame.origin.y
         
     }
 

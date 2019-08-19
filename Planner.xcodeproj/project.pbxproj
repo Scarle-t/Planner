@@ -10,6 +10,7 @@
 		A66A819C230975FC00DD6278 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66A819B230975FC00DD6278 /* Login.swift */; };
 		A66A819E230976C600DD6278 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66A819D230976C600DD6278 /* Global.swift */; };
 		A66A81A0230978A400DD6278 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66A819F230978A400DD6278 /* Staff.swift */; };
+		A66E253E230A129500E9113F /* DirectionalPan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E253D230A129500E9113F /* DirectionalPan.swift */; };
 		A694184D23045EEF00559C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A694184C23045EEF00559C21 /* AppDelegate.swift */; };
 		A694184F23045EEF00559C21 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A694184E23045EEF00559C21 /* SceneDelegate.swift */; };
 		A694185123045EEF00559C21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A694185023045EEF00559C21 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 		A66A819B230975FC00DD6278 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		A66A819D230976C600DD6278 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		A66A819F230978A400DD6278 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
+		A66E253D230A129500E9113F /* DirectionalPan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalPan.swift; sourceTree = "<group>"; };
 		A694184923045EEE00559C21 /* Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A694184C23045EEF00559C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A694184E23045EEF00559C21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		A6C30FFD23089D1500A02761 /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				A66E253D230A129500E9113F /* DirectionalPan.swift */,
 				A6C3100323089DE000A02761 /* JSONParser.swift */,
 				A6C3100423089DE000A02761 /* Network.swift */,
 				A6C30FFE23089D2500A02761 /* Reachability.swift */,
@@ -310,6 +313,7 @@
 				A66A81A0230978A400DD6278 /* Staff.swift in Sources */,
 				A694184D23045EEF00559C21 /* AppDelegate.swift in Sources */,
 				A6F838EF2308A1F200818A76 /* Session.swift in Sources */,
+				A66E253E230A129500E9113F /* DirectionalPan.swift in Sources */,
 				A6E407182305A54D00441C4F /* CardsCollectionViewLayout.swift in Sources */,
 				A694184F23045EEF00559C21 /* SceneDelegate.swift in Sources */,
 				A6C3101323089E4200A02761 /* SVRadialGradientLayer.m in Sources */,
@@ -458,7 +462,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = Planner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -480,7 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = Planner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
