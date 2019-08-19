@@ -252,7 +252,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        <#code#>
+        
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
