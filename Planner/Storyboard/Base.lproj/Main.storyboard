@@ -51,7 +51,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="45.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" id="Fw7-t4-FzB">
+                                                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" id="Fw7-t4-FzB">
                                                                         <rect key="frame" x="20" y="0.0" width="374" height="45.5"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>

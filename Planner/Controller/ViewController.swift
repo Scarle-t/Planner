@@ -25,12 +25,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     ]
     
     var cellTransform = CGAffineTransform()
+    var cellTransformAfterY = CGFloat.zero
     var currentIndex = IndexPath()
     var currentCell: planCell = planCell()
     var tableProject = [UITableView : Project]()
     var itemTransform = CGAffineTransform()
     var initialPlanY = CGFloat.zero
     var initial = CGPoint.zero
+    var refreshPan: PanDirectionGestureRecognizer!
+    var isExpand = false
     
     //MARK: IBOUTLET
     @IBOutlet weak var plans: UICollectionView!
@@ -55,6 +58,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         currentCell.itemList.reloadData()
         plans.isScrollEnabled = true
         plans.allowsSelection = true
+        isExpand = false
     }
     @objc func refreshList(){
         SVProgressHUD.show()
@@ -67,20 +71,35 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         case .began:
             initial = touch
         case .changed:
-            if touch.y > initial.y{
-                plans.frame.origin.y = initialPlanY + (touch.y - initial.y)
-                refreshIndicator.alpha = ((touch.y - initial.y) / touch.y) * 2.3
+            let ratio = ((touch.y - initial.y) / touch.y)
+            if !isExpand{
+                if touch.y > initial.y{
+                    plans.frame.origin.y = initialPlanY + (touch.y - initial.y)
+                    refreshIndicator.alpha = ratio * 2.3
+                }
+            }else{
+                currentCell.frame.origin.y = cellTransformAfterY + (touch.y - initial.y)
             }
+            
         case .ended, .cancelled:
-            UIView.animate(withDuration: 0.2) {
-                self.plans.frame.origin.y = self.initialPlanY
-            }
-            if touch.y - initial.y > plans.frame.height / 4{
-                refreshIndicator.alpha = 1
-                refreshIndicator.startAnimating()
-                refreshList()
-            } else {
-                refreshIndicator.alpha = 0
+            if !isExpand{
+                UIView.animate(withDuration: 0.2) {
+                    self.plans.frame.origin.y = self.initialPlanY
+                }
+                if touch.y - initial.y > plans.frame.height / 4{
+                    refreshIndicator.alpha = 1
+                    refreshIndicator.startAnimating()
+                    refreshList()
+                } else {
+                    refreshIndicator.alpha = 0
+                }
+            }else{
+                UIView.animate(withDuration: 0.2) {
+                    self.currentCell.frame.origin.y = self.cellTransformAfterY
+                }
+                if touch.y - initial.y > plans.frame.height / 4{
+                    closeCell(currentCell.closeBtn)
+                }
             }
         case .failed, .possible:
             break
@@ -109,8 +128,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! planCell
         
-        let pan = PanDirectionGestureRecognizer(direction: .vertical, target: self, action: #selector(panRefresh(_:)))
-        cell.addGestureRecognizer(pan)
+        refreshPan = PanDirectionGestureRecognizer(direction: .vertical, target: self, action: #selector(panRefresh(_:)))
+        cell.addGestureRecognizer(refreshPan)
+        isExpand = false
         
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 17
@@ -171,7 +191,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 cell.transform = .init(scaleX: cellRatioX, y: cellRatioY)
                 cell.closeBtn.alpha = 1
                 collectionView.layer.shadowOpacity = 0.0
-            }, completion: nil)
+            }){ _ in
+                self.cellTransformAfterY = cell.frame.origin.y
+            }
         }
         
         cell.itemList.isUserInteractionEnabled = true
@@ -181,6 +203,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.itemList.reloadData()
         collectionView.isScrollEnabled = false
         collectionView.allowsSelection = false
+        isExpand = true
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
@@ -227,6 +250,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 cell?.textLabel?.transform = self.itemTransform
             }, completion: nil)
         }
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        <#code#>
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
