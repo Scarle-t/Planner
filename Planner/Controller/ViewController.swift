@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, NetworkDelegate {
     
     //MARK: VAR
+    let network = Network()
     let startColors: [CGColor] = [
         "ADFFF9".uiColor.cgColor,
         "C6FFAD".uiColor.cgColor,

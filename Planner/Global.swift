@@ -11,6 +11,4 @@ import Foundation
 let baseURL = "https://api.scarletsc.net/aquori/"
 /// Session.shared
 let session = Session.shared
-
-let network = Network()
 let json = JSONParser()

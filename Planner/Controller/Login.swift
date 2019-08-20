@@ -11,6 +11,7 @@ import UIKit
 class Login: UIViewController, NetworkDelegate{
     
     //MARK: VARIABLE
+    let network = Network()
     
     //MARK: IBOUTLET
     @IBOutlet weak var ac: UITextField!

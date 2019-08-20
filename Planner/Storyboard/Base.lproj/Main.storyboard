@@ -317,7 +317,7 @@
                             </tableViewSection>
                             <tableViewSection id="ah1-vv-m57">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Hz7-Dk-r69" style="IBUITableViewCellStyleDefault" id="bgL-cJ-gJ1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Hz7-Dk-r69" style="IBUITableViewCellStyleDefault" id="bgL-cJ-gJ1">
                                         <rect key="frame" x="20" y="363.5" width="374" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bgL-cJ-gJ1" id="m96-cv-bdb">

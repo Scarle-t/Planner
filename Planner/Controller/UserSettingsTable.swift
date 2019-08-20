@@ -25,6 +25,7 @@ class UserSettingsTable: UITableViewController{
         if indexPath.section == 2 && indexPath.row == 0{
             let alert = UIAlertController(title: "Are you sure you want to logout?", message: nil, preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
+                session.clearProjects()
                 session.clearUser()
                 self.dismiss(animated: true){
                     session.mainVC.dismiss(animated: false, completion: nil)
