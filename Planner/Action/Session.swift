@@ -11,6 +11,7 @@ import UIKit
 class Session: NSObject{
     
     static let shared = Session()
+    var mainVC: UIViewController!
     
     fileprivate var projects: [Project]?
     func getProjects()->[Project]?{

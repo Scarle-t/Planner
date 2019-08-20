@@ -39,6 +39,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var plans: UICollectionView!
     @IBOutlet weak var heading: UILabel!
     @IBOutlet weak var refreshIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var userMenu: UIButton!
     
     //MARK: OBJC FUNC
     @IBAction func closeCell(_ sender: UIButton){
@@ -307,6 +308,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.transform = .init(translationX: 0, y: 20)
         UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn, animations: {
             self.heading.center.y = (self.view.safeAreaInsets.top + (self.plans.frame.origin.y - self.view.safeAreaInsets.top) / 2) - 7
+            self.userMenu.alpha = 1
         }, completion: { _ in
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
                 self.plans.transform = .identity
@@ -315,7 +317,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         })
         refreshIndicator.center.y = heading.center.y
         initialPlanY = plans.frame.origin.y
-        
+        session.mainVC = self
     }
 
 }

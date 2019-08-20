@@ -17,6 +17,8 @@
 		A694185423045EEF00559C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A694185223045EEF00559C21 /* Main.storyboard */; };
 		A694185923045EF000559C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A694185723045EF000559C21 /* LaunchScreen.storyboard */; };
 		A69BF309230B3D020006131F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A69BF308230B3D020006131F /* Assets.xcassets */; };
+		A6B462CA230CA89E0010728E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B462C9230CA89E0010728E /* UserSettings.swift */; };
+		A6B462CC230CAB120010728E /* UserSettingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B462CB230CAB120010728E /* UserSettingsTable.swift */; };
 		A6B6F4E4230463C700CFBC02 /* cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B6F4E3230463C700CFBC02 /* cells.swift */; };
 		A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B6F4E62304654C00CFBC02 /* extensions.swift */; };
 		A6C30FFF23089D2500A02761 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C30FFE23089D2500A02761 /* Reachability.swift */; };
@@ -47,6 +49,8 @@
 		A694185823045EF000559C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A694185A23045EF000559C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A69BF308230B3D020006131F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A6B462C9230CA89E0010728E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		A6B462CB230CAB120010728E /* UserSettingsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTable.swift; sourceTree = "<group>"; };
 		A6B6F4E3230463C700CFBC02 /* cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cells.swift; sourceTree = "<group>"; };
 		A6B6F4E62304654C00CFBC02 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		A6C30FFE23089D2500A02761 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 			children = (
 				A694185023045EEF00559C21 /* ViewController.swift */,
 				A66A819B230975FC00DD6278 /* Login.swift */,
+				A6B462C9230CA89E0010728E /* UserSettings.swift */,
+				A6B462CB230CAB120010728E /* UserSettingsTable.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -301,9 +307,11 @@
 				A66A819C230975FC00DD6278 /* Login.swift in Sources */,
 				A6C3101623089E4200A02761 /* SVIndefiniteAnimatedView.m in Sources */,
 				A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */,
+				A6B462CA230CA89E0010728E /* UserSettings.swift in Sources */,
 				A6C3101423089E4200A02761 /* SVProgressAnimatedView.m in Sources */,
 				A6C3100523089DE000A02761 /* JSONParser.swift in Sources */,
 				A6F838EB2308A14600818A76 /* Project.swift in Sources */,
+				A6B462CC230CAB120010728E /* UserSettingsTable.swift in Sources */,
 				A694185123045EEF00559C21 /* ViewController.swift in Sources */,
 				A66A819E230976C600DD6278 /* Global.swift in Sources */,
 				A6C3101523089E4200A02761 /* SVProgressHUD.m in Sources */,
@@ -462,7 +470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = Planner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -484,7 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = Planner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

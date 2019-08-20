@@ -46,7 +46,10 @@ class Login: UIViewController, NetworkDelegate{
                     let plan = self.storyboard?.instantiateViewController(withIdentifier: "plan") as! ViewController
                     
                     plan.modalPresentationStyle = .fullScreen
-                    self.present(plan, animated: false, completion: nil)
+                    self.present(plan, animated: false){
+                        self.ac.text = ""
+                        self.pw.text = ""
+                    }
                 }
             }else if (item["Result"] as! String) == "Fail"{
                 DispatchQueue.main.async {
