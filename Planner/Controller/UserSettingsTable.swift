@@ -11,7 +11,7 @@ import UIKit
 class UserSettingsTable: UITableViewController{
     
     //MARK: VARIABLE
-    
+    var popRecognizer: InteractivePopRecognizer!
     
     //MARK: IBOUTLET
     @IBOutlet weak var name: UILabel!
@@ -41,7 +41,8 @@ class UserSettingsTable: UITableViewController{
     
     //MARK: FUNC
     func delegate(){
-        
+        popRecognizer = InteractivePopRecognizer(controller: self.navigationController!)
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = popRecognizer
     }
     
     func layout(){
