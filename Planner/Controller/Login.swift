@@ -32,12 +32,22 @@ class Login: UIViewController, NetworkDelegate{
         var query: String? = "login=\(acText)&pwd=\(pwText)"
         query = query?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         SVProgressHUD.show()
+        DispatchQueue.main.async {
+            SVProgressHUD.show()
+            self.ac.isEnabled = false
+            self.pw.isEnabled = false
+        }
         network.send(url: baseURL + "login.php", method: "POST", query: query)
         
     }
     @IBAction func bioLogin(_ sender: UIButton) {
         Authenticate { (success) in
             if success{
+                DispatchQueue.main.async {
+                    SVProgressHUD.show()
+                    self.ac.isEnabled = false
+                    self.pw.isEnabled = false
+                }
                 self.network.send(url: baseURL + "login.php?SID=\(defaults.integer(forKey: "SID"))", method: "BIO", query: nil)
             }
         }
@@ -58,11 +68,16 @@ class Login: UIViewController, NetworkDelegate{
                     self.present(plan, animated: false){
                         self.ac.text = ""
                         self.pw.text = ""
+                        self.ac.isEnabled = true
+                        self.pw.isEnabled = true
                     }
                 }
             }else if (item["Result"] as! String) == "Fail"{
                 DispatchQueue.main.async {
                     SVProgressHUD.dismiss()
+                    self.ac.isEnabled = true
+                    self.pw.isEnabled = true
+                    self.ac.becomeFirstResponder()
                     SVProgressHUD.showError(withStatus: item["Reason"] as? String)
                     SVProgressHUD.dismiss(withDelay: 3)
                 }

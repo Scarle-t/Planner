@@ -56,7 +56,7 @@ class Settings: UITableViewController{
         }else{
             toggleBio.setOn(false, animated: false)
         }
-        
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg"))
     }
     
     func setup(){

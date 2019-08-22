@@ -620,7 +620,7 @@
         <scene sceneID="lRk-BW-spT">
             <objects>
                 <tableViewController id="wTz-Yd-glp" customClass="Settings" customModule="Planner" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="uPx-7w-L3y">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="uPx-7w-L3y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="791"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -634,22 +634,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Use Biometrics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8m-ti-57Z">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Biometrics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8m-ti-57Z">
                                                     <rect key="frame" x="20" y="10" width="113" height="23"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8W7-Rg-JNd">
-                                                    <rect key="frame" x="305" y="6" width="49" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8W7-Rg-JNd">
+                                                    <rect key="frame" x="303" y="6" width="51" height="31"/>
                                                     <color key="onTintColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="bioSwitch:" destination="wTz-Yd-glp" eventType="valueChanged" id="hpv-he-bnk"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8W7-Rg-JNd" firstAttribute="top" secondItem="C4B-g3-8od" secondAttribute="top" constant="6" id="E0K-6f-eDx"/>
+                                                <constraint firstAttribute="trailing" secondItem="8W7-Rg-JNd" secondAttribute="trailing" constant="22" id="FA2-Ny-X6f"/>
+                                                <constraint firstItem="8W7-Rg-JNd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="u8m-ti-57Z" secondAttribute="trailing" constant="8" symbolic="YES" id="a12-ma-CGX"/>
+                                                <constraint firstItem="u8m-ti-57Z" firstAttribute="top" secondItem="C4B-g3-8od" secondAttribute="top" constant="10" id="p2x-Ih-DRA"/>
+                                                <constraint firstItem="u8m-ti-57Z" firstAttribute="leading" secondItem="C4B-g3-8od" secondAttribute="leading" constant="20" id="woK-hZ-wlt"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
