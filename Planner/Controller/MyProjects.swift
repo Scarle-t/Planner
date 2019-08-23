@@ -65,6 +65,11 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     @IBAction func close(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
+    @IBAction func addProjBtn(_ sender: UIButton) {
+        let addProject = storyboard?.instantiateViewController(withIdentifier: "addProjNav") as! UINavigationController
+        addProject.modalPresentationStyle = .fullScreen
+        present(addProject, animated: true, completion: nil)
+    }
     
     //MARK: OBJC FUNC
     @objc func refreshList(){
@@ -291,7 +296,7 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     func layout(){
         plans.collectionViewLayout = CardsCollectionViewLayout()
         let layout = plans.collectionViewLayout as! CardsCollectionViewLayout
-        layout.itemSize = .init(width: plans.bounds.width * 0.8, height: plans.bounds.height * 0.7)
+        layout.itemSize = .init(width: plans.bounds.width * 0.75, height: plans.bounds.height * 0.75)
         layout.spacing = 30
         plans.isPagingEnabled = true
         plans.showsHorizontalScrollIndicator = false

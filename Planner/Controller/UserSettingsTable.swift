@@ -36,6 +36,18 @@ class UserSettingsTable: UITableViewController{
         }
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0{
+            let footerView = UIView()
+            let border = UIView(frame: CGRect(x: 0, y: footerView.frame.height + 20, width: tableView.frame.width - (tableView.separatorInset.left * 2), height: 1))
+            border.backgroundColor = .systemTeal
+            border.alpha = 0.4
+            footerView.addSubview(border)
+            return footerView
+        }
+        return nil
+    }
+    
     //MARK: OBJC FUNC
     
     
