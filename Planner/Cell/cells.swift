@@ -15,4 +15,5 @@ class planCell: UICollectionViewCell{
     @IBOutlet weak var gradView: UIView!
     @IBOutlet weak var itemList: UITableView!
     @IBOutlet weak var closeBtn: UIButton!
+    @IBOutlet weak var actionBtn: UIButton!
 }

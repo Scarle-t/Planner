@@ -43,3 +43,16 @@ extension String{
         return hexBytes.joined()
     }
 }
+
+extension UITextField {
+    func bottomBorder(strokeColor: UIColor = .gray, backgroundColor : UIColor = .white) {
+        self.borderStyle = .none
+        self.layer.backgroundColor = backgroundColor.cgColor
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = strokeColor.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+    }
+}

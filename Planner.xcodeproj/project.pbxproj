@@ -11,6 +11,8 @@
 		A66A819E230976C600DD6278 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66A819D230976C600DD6278 /* Global.swift */; };
 		A66A81A0230978A400DD6278 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66A819F230978A400DD6278 /* Staff.swift */; };
 		A66E253E230A129500E9113F /* DirectionalPan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E253D230A129500E9113F /* DirectionalPan.swift */; };
+		A66ECEDD23119854005C7CC6 /* Completed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66ECEDC23119854005C7CC6 /* Completed.swift */; };
+		A692AB5523119AE600287FFB /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692AB5423119AE600287FFB /* Requests.swift */; };
 		A694184D23045EEF00559C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A694184C23045EEF00559C21 /* AppDelegate.swift */; };
 		A694184F23045EEF00559C21 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A694184E23045EEF00559C21 /* SceneDelegate.swift */; };
 		A694185123045EEF00559C21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A694185023045EEF00559C21 /* ViewController.swift */; };
@@ -45,6 +47,8 @@
 		A66A819D230976C600DD6278 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		A66A819F230978A400DD6278 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
 		A66E253D230A129500E9113F /* DirectionalPan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalPan.swift; sourceTree = "<group>"; };
+		A66ECEDC23119854005C7CC6 /* Completed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Completed.swift; sourceTree = "<group>"; };
+		A692AB5423119AE600287FFB /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		A694184923045EEE00559C21 /* Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A694184C23045EEF00559C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A694184E23045EEF00559C21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 		A6C3100023089D3A00A02761 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A692AB5423119AE600287FFB /* Requests.swift */,
+				A66ECEDC23119854005C7CC6 /* Completed.swift */,
 				A6BCAB31230D756A004969EA /* MyProjects.swift */,
 				A694185023045EEF00559C21 /* ViewController.swift */,
 				A66A819B230975FC00DD6278 /* Login.swift */,
@@ -320,7 +326,9 @@
 				A6C30FFF23089D2500A02761 /* Reachability.swift in Sources */,
 				A66A819C230975FC00DD6278 /* Login.swift in Sources */,
 				A6BCAB34230D7A40004969EA /* InteractivePopGesture.swift in Sources */,
+				A66ECEDD23119854005C7CC6 /* Completed.swift in Sources */,
 				A6C3101623089E4200A02761 /* SVIndefiniteAnimatedView.m in Sources */,
+				A692AB5523119AE600287FFB /* Requests.swift in Sources */,
 				A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */,
 				A6B462CA230CA89E0010728E /* UserSettings.swift in Sources */,
 				A6C3101423089E4200A02761 /* SVProgressAnimatedView.m in Sources */,
@@ -489,7 +497,7 @@
 				CODE_SIGN_ENTITLEMENTS = Planner/Planner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7.1;
+				CURRENT_PROJECT_VERSION = 8;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = Planner/Info.plist;
@@ -514,7 +522,7 @@
 				CODE_SIGN_ENTITLEMENTS = Planner/Planner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7.1;
+				CURRENT_PROJECT_VERSION = 8;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = Planner/Info.plist;

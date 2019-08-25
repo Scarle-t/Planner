@@ -26,6 +26,9 @@ class Settings: UITableViewController{
             defaults.set(false, forKey: "useBio")
         }
     }
+    @IBAction func close(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
     
     
     //MARK: DELEGATION

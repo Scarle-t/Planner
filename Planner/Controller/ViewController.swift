@@ -30,6 +30,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var currentIndex = IndexPath()
     var currentCell: planCell = planCell()
     var tableProject = [UITableView : Project]()
+    var selectedProject = Project()
     var itemTransform = CGAffineTransform()
     var initialPlanY = CGFloat.zero
     var initial = CGPoint.zero
@@ -42,10 +43,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var refreshIndicator: UIActivityIndicatorView!
     @IBOutlet weak var userMenu: UIButton!
     
-    //MARK: OBJC FUNC
+    //MARK: IBACTION
     @IBAction func closeCell(_ sender: UIButton){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             sender.alpha = 0
+            self.currentCell.actionBtn.alpha = 0
             self.currentCell.transform = self.cellTransform
             self.plans.layer.shadowOpacity = 0.2
         }, completion: { _ in
@@ -62,6 +64,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         plans.allowsSelection = true
         isExpand = false
     }
+    @IBAction func actionMenu(_ sender: UIButton) {
+        let alert = UIAlertController(title: selectedProject.title, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Project Details", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: OBJC FUNC
     @objc func refreshList(){
         SVProgressHUD.show()
         network.send(url: baseURL + "projects.php", method: "GET", query: nil)
@@ -137,13 +147,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 17
         
-        let gradLayer = CAGradientLayer()
-        gradLayer.frame = cell.bounds
-        let startColor = startColors[indexPath.row % startColors.count]
-        let endColor = endColors[indexPath.row % endColors.count]
-        gradLayer.colors = [startColor, endColor]
-        cell.gradView.layer.addSublayer(gradLayer)
-        
         cell.itemList.delegate = self
         cell.itemList.dataSource = self
         cell.itemList.allowsSelection = false
@@ -151,6 +154,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.itemList.reloadData()
         
         let project = session.getProjects()?[indexPath.row]
+        
+        let gradLayer = CAGradientLayer()
+        gradLayer.frame = cell.bounds
+        let startColor = startColors[project!.PID - 1 % startColors.count]
+        let endColor = endColors[project!.PID - 1 % endColors.count]
+        gradLayer.colors = [startColor, endColor]
+        cell.gradView.layer.addSublayer(gradLayer)
         
         tableProject[cell.itemList] = project
         
@@ -179,6 +189,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)! as! planCell
         currentCell = cell
+        selectedProject = session.getProjects()![indexPath.row]
         currentIndex = indexPath
         cellTransform = cell.transform
         cell.superview?.bringSubviewToFront(cell)
@@ -192,6 +203,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
                 cell.transform = .init(scaleX: cellRatioX, y: cellRatioY)
                 cell.closeBtn.alpha = 1
+                cell.actionBtn.alpha = 1
                 collectionView.layer.shadowOpacity = 0.0
             }){ _ in
                 self.cellTransformAfterY = cell.frame.origin.y

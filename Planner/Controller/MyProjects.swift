@@ -36,6 +36,7 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     var initial = CGPoint.zero
     var refreshPan: PanDirectionGestureRecognizer!
     var isExpand = false
+    var selectedProject = Project()
     
     //MARK: IBOUTLET
     @IBOutlet weak var plans: UICollectionView!
@@ -46,6 +47,7 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     @IBAction func closeCell(_ sender: UIButton){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             sender.alpha = 0
+            self.currentCell.actionBtn.alpha = 0
             self.currentCell.transform = self.cellTransform
             self.plans.layer.shadowOpacity = 0.2
         }, completion: { _ in
@@ -69,6 +71,12 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         let addProject = storyboard?.instantiateViewController(withIdentifier: "addProjNav") as! UINavigationController
         addProject.modalPresentationStyle = .fullScreen
         present(addProject, animated: true, completion: nil)
+    }
+    @IBAction func actionMenu(_ sender: UIButton) {
+        let alert = UIAlertController(title: selectedProject.title, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Project Details", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     //MARK: OBJC FUNC
@@ -152,13 +160,6 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 17
         
-        let gradLayer = CAGradientLayer()
-        gradLayer.frame = cell.bounds
-        let startColor = startColors[indexPath.row % startColors.count]
-        let endColor = endColors[indexPath.row % endColors.count]
-        gradLayer.colors = [startColor, endColor]
-        cell.gradView.layer.addSublayer(gradLayer)
-        
         cell.itemList.delegate = self
         cell.itemList.dataSource = self
         cell.itemList.allowsSelection = false
@@ -166,6 +167,13 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         cell.itemList.reloadData()
         
         let project = myProjects[indexPath.row]
+        
+        let gradLayer = CAGradientLayer()
+        gradLayer.frame = cell.bounds
+        let startColor = startColors[project.PID - 1 % startColors.count]
+        let endColor = endColors[project.PID - 1 % endColors.count]
+        gradLayer.colors = [startColor, endColor]
+        cell.gradView.layer.addSublayer(gradLayer)
         
         tableProject[cell.itemList] = project
         
@@ -186,7 +194,7 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         }
         
         cell.planTitle.text = project.title
-        cell.author.text = project.author
+        cell.author.text = "Status: " + project.status
         
         return cell
     }
@@ -194,6 +202,7 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)! as! planCell
         currentCell = cell
+        selectedProject = myProjects[indexPath.row]
         currentIndex = indexPath
         cellTransform = cell.transform
         cell.superview?.bringSubviewToFront(cell)
@@ -207,6 +216,7 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
                 cell.transform = .init(scaleX: cellRatioX, y: cellRatioY)
                 cell.closeBtn.alpha = 1
+                cell.actionBtn.alpha = 1
                 collectionView.layer.shadowOpacity = 0.0
             }){ _ in
                 self.cellTransformAfterY = cell.frame.origin.y
