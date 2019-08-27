@@ -10,25 +10,25 @@ import UIKit
 
 class UserSettings: UIViewController{
     
-    //MARK: VARIABLE
+    //MARK: - VARIABLE
     
     
-    //MARK: IBOUTLET
+    //MARK: - IBOUTLET
     
     
-    //MARK: IBACTION
+    //MARK: - IBACTION
     @IBAction func close(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     
-    //MARK: DELEGATION
+    //MARK: - DELEGATION
     
     
-    //MARK: OBJC FUNC
+    //MARK: - OBJC FUNC
     
     
-    //MARK: FUNC
+    //MARK: - FUNC
     func delegate(){
         
     }
@@ -41,7 +41,7 @@ class UserSettings: UIViewController{
         
     }
     
-    //MARK: VIEW CONTROLLER
+    //MARK: - VIEW CONTROLLER
     override func viewDidLoad(){
         super.viewDidLoad()
         

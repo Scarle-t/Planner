@@ -10,17 +10,17 @@ import Foundation
 
 class Staff: NSObject{
     
-    //MARK: ATTRIBUTE
+    //MARK: - ATTRIBUTE
     var SID: Int
     var Name: String
     
-    //MARK: INIT
+    //MARK: - INIT
     override init(){
         SID = 0
         Name = ""
     }
     
-    //MARK: PARSE
+    //MARK: - PARSE
     func parse(_ data: NSDictionary){
         SID = Int(data["SID"] as! String)!
         Name = data["Name"] as! String

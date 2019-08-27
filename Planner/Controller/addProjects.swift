@@ -10,25 +10,25 @@ import UIKit
 
 class addProjects: UITableViewController{
     
-    //MARK: VARIABLE
+    //MARK: - VARIABLE
     
     
-    //MARK: IBOUTLET
+    //MARK: - IBOUTLET
     
     
-    //MARK: IBACTION
+    //MARK: - IBACTION
     @IBAction func close(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
     
-    //MARK: DELEGATION
+    //MARK: - DELEGATION
     
     
-    //MARK: OBJC FUNC
+    //MARK: - OBJC FUNC
     
     
-    //MARK: FUNC
+    //MARK: - FUNC
     func delegate(){
         
     }
@@ -42,7 +42,7 @@ class addProjects: UITableViewController{
         
     }
     
-    //MARK: VIEW CONTROLLER
+    //MARK: - VIEW CONTROLLER
     override func viewDidLoad(){
         super.viewDidLoad()
         

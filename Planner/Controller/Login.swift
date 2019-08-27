@@ -11,15 +11,15 @@ import LocalAuthentication
 
 class Login: UIViewController, NetworkDelegate{
     
-    //MARK: VARIABLE
+    //MARK: - VARIABLE
     let network = Network()
     
-    //MARK: IBOUTLET
+    //MARK: - IBOUTLET
     @IBOutlet weak var ac: UITextField!
     @IBOutlet weak var pw: UITextField!
     @IBOutlet weak var bioLock: UIButton!
     
-    //MARK: IBACTION
+    //MARK: - IBACTION
     @IBAction func login(_ sender: UIButton) {
         guard let acText = ac.text, var pwText = pw.text else {
             SVProgressHUD.showError(withStatus: nil)
@@ -53,7 +53,7 @@ class Login: UIViewController, NetworkDelegate{
         }
     }
     
-    //MARK: DELEGATION
+    //MARK: - DELEGATION
     func ResponseHandle(data: Data) {
         let response = json.parse(data)!
         
@@ -86,12 +86,12 @@ class Login: UIViewController, NetworkDelegate{
         
     }
     
-    //MARK: OBJC FUNC
+    //MARK: - OBJC FUNC
     @objc func dismissKb(){
         view.endEditing(true)
     }
     
-    //MARK: FUNC
+    //MARK: - FUNC
     func errorMessage(errorCode:Int) -> String{
         
         var strMessage = ""
@@ -191,7 +191,7 @@ class Login: UIViewController, NetworkDelegate{
         }
     }
     
-    //MARK: VIEW CONTROLLER
+    //MARK: - VIEW CONTROLLER
     override func viewDidLoad(){
         super.viewDidLoad()
         

@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, NetworkDelegate {
     
-    //MARK: VAR
+    //MARK: - VAR
     let network = Network()
     let startColors: [CGColor] = [
         "ADFFF9".uiColor.cgColor,
@@ -36,14 +36,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var initial = CGPoint.zero
     var refreshPan: PanDirectionGestureRecognizer!
     var isExpand = false
+    var isDetails = false
     
-    //MARK: IBOUTLET
+    //MARK: - IBOUTLET
     @IBOutlet weak var plans: UICollectionView!
     @IBOutlet weak var heading: UILabel!
     @IBOutlet weak var refreshIndicator: UIActivityIndicatorView!
     @IBOutlet weak var userMenu: UIButton!
     
-    //MARK: IBACTION
+    //MARK: - IBACTION
     @IBAction func closeCell(_ sender: UIButton){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             sender.alpha = 0
@@ -51,8 +52,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             self.currentCell.transform = self.cellTransform
             self.plans.layer.shadowOpacity = 0.2
         }, completion: { _ in
-            UIView.performWithoutAnimation {
-                self.plans.reloadItems(at: [self.currentIndex])
+            UIView.animate(withDuration: 0.2, animations: {
+                self.currentCell.details.alpha = 0
+            }) { _ in
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.currentCell.itemList.alpha = 1
+                }) { _ in
+                    UIView.performWithoutAnimation {
+                        self.plans.reloadItems(at: [self.currentIndex])
+                    }
+                }
             }
         })
         currentCell.itemList.isUserInteractionEnabled = false
@@ -60,18 +69,40 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         currentCell.itemList.allowsSelection = false
         currentCell.itemList.tag = -1
         currentCell.itemList.reloadData()
+        currentCell.details.isScrollEnabled = false
+        currentCell.details.isUserInteractionEnabled = false
         plans.isScrollEnabled = true
         plans.allowsSelection = true
         isExpand = false
+        isDetails = false
     }
     @IBAction func actionMenu(_ sender: UIButton) {
         let alert = UIAlertController(title: selectedProject.title, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Project Details", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Project" + (self.isDetails ? " Items" : " Details"), style: .default, handler: { _ in
+            if self.isDetails{
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.currentCell.details.alpha = 0
+                }) { _ in
+                    UIView.animate(withDuration: 0.2) {
+                        self.currentCell.itemList.alpha = 1
+                    }
+                }
+            }else{
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.currentCell.itemList.alpha = 0
+                }) { _ in
+                    UIView.animate(withDuration: 0.2) {
+                        self.currentCell.details.alpha = 1
+                    }
+                }
+            }
+            self.isDetails.toggle()
+        }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: OBJC FUNC
+    //MARK: - OBJC FUNC
     @objc func refreshList(){
         SVProgressHUD.show()
         network.send(url: baseURL + "projects.php", method: "GET", query: nil)
@@ -120,7 +151,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    //MARK: DELEGATE - NETWORK
+    //MARK: - DELEGATE - NETWORK
     func ResponseHandle(data: Data) {
         let result = JSONParser().parse(data)!
         session.setProjects(with: result)
@@ -132,7 +163,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    //MARK: DELEGATE - COLLECTION VIEW
+    //MARK: - DELEGATE - COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return session.getProjects()?.count ?? 0
     }
@@ -143,6 +174,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         refreshPan = PanDirectionGestureRecognizer(direction: .vertical, target: self, action: #selector(panRefresh(_:)))
         cell.addGestureRecognizer(refreshPan)
         isExpand = false
+        isDetails = false
         
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 17
@@ -182,6 +214,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         cell.planTitle.text = project?.title
         cell.author.text = project?.author
+        cell.details.text = project?.details
         
         return cell
     }
@@ -215,6 +248,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.itemList.allowsSelection = true
         cell.itemList.tag = 0
         cell.itemList.reloadData()
+        cell.details.isScrollEnabled = true
+        cell.details.isUserInteractionEnabled = true
         collectionView.isScrollEnabled = false
         collectionView.allowsSelection = false
         isExpand = true
@@ -239,7 +274,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }, completion: nil)
     }
     
-    //MARK: DELEGATE - TABLE VIEW
+    //MARK: - DELEGATE - TABLE VIEW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableProject[tableView]?.items?.count ?? 0
     }
@@ -284,7 +319,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }, completion: nil)
     }
     
-    //MARK: SETUP
+    //MARK: - SETUP
     func delegate(){
         plans.delegate = self
         plans.dataSource = self
@@ -306,7 +341,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg"))
     }
     
-    //MARK: VIEW LIFECYCLE
+    //MARK: - VIEW LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

@@ -10,7 +10,7 @@ import Foundation
 
 class Project: NSObject{
     
-    //MARK: ATTRIBUTE
+    //MARK: - ATTRIBUTE
     var PID: Int
     var title: String
     var details: String
@@ -18,7 +18,7 @@ class Project: NSObject{
     var status: String
     var items: [Item]?
     
-    //MARK: INIT
+    //MARK: - INIT
     override init(){
         PID = 0
         title = ""
@@ -27,7 +27,7 @@ class Project: NSObject{
         status = ""
     }
     
-    //MARK: PARSE
+    //MARK: - PARSE
     func parse(_ data: NSDictionary){
         PID = Int(data["PID"] as! String)!
         title = data["Title"] as! String

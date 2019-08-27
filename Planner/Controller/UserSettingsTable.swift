@@ -10,17 +10,17 @@ import UIKit
 
 class UserSettingsTable: UITableViewController{
     
-    //MARK: VARIABLE
+    //MARK: - VARIABLE
     var popRecognizer: InteractivePopRecognizer!
     
-    //MARK: IBOUTLET
+    //MARK: - IBOUTLET
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var version: UILabel!
     
-    //MARK: IBACTION
+    //MARK: - IBACTION
     
     
-    //MARK: DELEGATION
+    //MARK: - DELEGATION
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 && indexPath.row == 0{
             let alert = UIAlertController(title: "Are you sure you want to logout?", message: nil, preferredStyle: .actionSheet)
@@ -48,10 +48,10 @@ class UserSettingsTable: UITableViewController{
         return nil
     }
     
-    //MARK: OBJC FUNC
+    //MARK: - OBJC FUNC
     
     
-    //MARK: FUNC
+    //MARK: - FUNC
     func delegate(){
         popRecognizer = InteractivePopRecognizer(controller: self.navigationController!)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = popRecognizer
@@ -66,7 +66,7 @@ class UserSettingsTable: UITableViewController{
         version.text = "Aquori Multimedia Production\n" + (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String) + " (" + (Bundle.main.infoDictionary!["CFBundleVersion"] as! String) + ")"
     }
     
-    //MARK: VIEW CONTROLLER
+    //MARK: - VIEW CONTROLLER
     override func viewDidLoad(){
         super.viewDidLoad()
         

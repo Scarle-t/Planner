@@ -10,19 +10,19 @@ import Foundation
 
 class Item: NSObject{
     
-    //MARK: ATTRIBUTE
+    //MARK: - ATTRIBUTE
     var IID: Int
     var type: String
     var content: String
     
-    //MARK: INIT
+    //MARK: - INIT
     override init(){
         IID = 0
         type = ""
         content = ""
     }
     
-    //MARK: PARSE
+    //MARK: - PARSE
     func parse(_ data: NSDictionary){
         IID = Int(data["IID"] as! String)!
         type = data["type"] as! String

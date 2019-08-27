@@ -10,13 +10,13 @@ import UIKit
 
 class Settings: UITableViewController{
     
-    //MARK: VARIABLE
+    //MARK: - VARIABLE
     
     
-    //MARK: IBOUTLET
+    //MARK: - IBOUTLET
     @IBOutlet weak var toggleBio: UISwitch!
     
-    //MARK: IBACTION
+    //MARK: - IBACTION
     @IBAction func bioSwitch(_ sender: UISwitch) {
         if sender.isOn{
             defaults.set(session.getUser()!.SID, forKey: "SID")
@@ -31,7 +31,7 @@ class Settings: UITableViewController{
     }
     
     
-    //MARK: DELEGATION
+    //MARK: - DELEGATION
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0{
             if !toggleBio.isEnabled{
@@ -41,10 +41,10 @@ class Settings: UITableViewController{
         return nil
     }
     
-    //MARK: OBJC FUNC
+    //MARK: - OBJC FUNC
     
     
-    //MARK: FUNC
+    //MARK: - FUNC
     func delegate(){
         
     }
@@ -66,7 +66,7 @@ class Settings: UITableViewController{
         
     }
     
-    //MARK: VIEW CONTROLLER
+    //MARK: - VIEW CONTROLLER
     override func viewDidLoad(){
         super.viewDidLoad()
         

@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: planCell
+//MARK: - planCell
 class planCell: UICollectionViewCell{
     @IBOutlet weak var planTitle: UILabel!
     @IBOutlet weak var author: UILabel!
@@ -16,4 +16,5 @@ class planCell: UICollectionViewCell{
     @IBOutlet weak var itemList: UITableView!
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var actionBtn: UIButton!
+    @IBOutlet weak var details: UITextView!
 }
