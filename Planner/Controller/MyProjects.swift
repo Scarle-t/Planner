@@ -12,18 +12,6 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     //MARK: - VAR
     let network = Network()
-    let startColors: [CGColor] = [
-        "ADFFF9".uiColor.cgColor,
-        "C6FFAD".uiColor.cgColor,
-        "FCFFAD".uiColor.cgColor,
-        "FFD0AD".uiColor.cgColor,
-    ]
-    let endColors: [CGColor] = [
-        "7CD5EA".uiColor.cgColor,
-        "7CEAAB".uiColor.cgColor,
-        "EACC7C".uiColor.cgColor,
-        "EA7C7C".uiColor.cgColor,
-    ]
     
     var myProjects = [Project]()
     var cellTransform = CGAffineTransform()
@@ -183,51 +171,16 @@ class MyProjects: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! planCell
-        
-        refreshPan = PanDirectionGestureRecognizer(direction: .vertical, target: self, action: #selector(panRefresh(_:)))
-        cell.addGestureRecognizer(refreshPan)
-        isExpand = false
-        isDetails = false
-        
-        cell.layer.masksToBounds = true
-        cell.layer.cornerRadius = 17
-        
-        cell.itemList.delegate = self
-        cell.itemList.dataSource = self
-        cell.itemList.allowsSelection = false
-        cell.itemList.tag = -1
-        cell.itemList.reloadData()
-        
         let project = myProjects[indexPath.row]
         
-        let gradLayer = CAGradientLayer()
-        gradLayer.frame = cell.bounds
-        let startColor = startColors[project.PID - 1 % startColors.count]
-        let endColor = endColors[project.PID - 1 % endColors.count]
-        gradLayer.colors = [startColor, endColor]
-        cell.gradView.layer.addSublayer(gradLayer)
-        
+        isExpand = false
+        isDetails = false
         tableProject[cell.itemList] = project
-        
-        network.send(url: baseURL + "items.php?PID=\(project.PID)", method: "GET", query: nil) { (data) in
-            guard let d = data else {return}
-            let result = json.parse(d)!
-            var items = [Item]()
-            items.removeAll()
-            for item in result{
-                let i = Item()
-                i.parse(item)
-                items.append(i)
-            }
-            project.items = items
-            DispatchQueue.main.async {
-                cell.itemList.reloadData()
-            }
-        }
-        
-        cell.planTitle.text = project.title
-        cell.author.text = "Status: " + project.status
-        cell.details.text = project.details
+        refreshPan = PanDirectionGestureRecognizer(direction: .vertical, target: self, action: #selector(panRefresh(_:)))
+        cell.addGestureRecognizer(refreshPan)
+        cell.itemList.delegate = self
+        cell.itemList.dataSource = self
+        populatePlanCell(cell: cell, item: project, showAuthor: false)
         
         return cell
     }
