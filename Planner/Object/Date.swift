@@ -23,9 +23,14 @@ class Date: NSObject{
     }
     
     //MARK: - FUNCTION
-    func getDateFormat(shortForm: Bool)->String{
+    func getStringFormat(shortForm: Bool)->String{
         return shortForm ? ("\(day)/\(month)") : ("\(day)/\(month)/\(year)")
     }
     
+    func getDateFormat()->Foundation.Date{
+        let sdFormat = DateFormatter()
+        sdFormat.dateFormat = "yyyy/MM/dd"
+        return sdFormat.date(from: "\(year)/\(month)/\(day)")!
+    }
     
 }

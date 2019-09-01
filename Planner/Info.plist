@@ -24,6 +24,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Add events to Calendar</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Use biometrics to login.</string>
 	<key>UIApplicationSceneManifest</key>

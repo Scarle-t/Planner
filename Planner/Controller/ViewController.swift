@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, NetworkDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, EKEventViewDelegate, NetworkDelegate {
     
     //MARK: - VAR
     let network = Network()
-    
     
     var cellTransform = CGAffineTransform()
     var cellTransformAfterY = CGFloat.zero
@@ -253,17 +254,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         switch indexPath.section{
         case 0:
             cell.item.text = almostDue[indexPath.row].content
-            cell.dueDate.text = "Due: " + almostDue[indexPath.row].dueDate.getDateFormat(shortForm: true)
+            cell.dueDate.text = "Due: " + almostDue[indexPath.row].dueDate.getStringFormat(shortForm: true)
             cell.inCharge.text = almostDue[indexPath.row].inCharge
             cell.dueDate.textColor = .black
         case 1:
             cell.item.text = notYetDue[indexPath.row].content
-            cell.dueDate.text = "Due: " + notYetDue[indexPath.row].dueDate.getDateFormat(shortForm: true)
+            cell.dueDate.text = "Due: " + notYetDue[indexPath.row].dueDate.getStringFormat(shortForm: true)
             cell.inCharge.text = notYetDue[indexPath.row].inCharge
             cell.dueDate.textColor = .black
         case 2:
             cell.item.text = past[indexPath.row].content
-            cell.dueDate.text = "Due: " + past[indexPath.row].dueDate.getDateFormat(shortForm: true)
+            cell.dueDate.text = "Due: " + past[indexPath.row].dueDate.getStringFormat(shortForm: true)
             cell.inCharge.text = past[indexPath.row].inCharge
             cell.dueDate.textColor = .systemRed
         default:
@@ -294,6 +295,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! itemCell
         itemTransform = cell.item.transform
+        var currentItem = Item()
+        switch indexPath.section{
+        case 0:
+            currentItem = self.tableProject[tableView]!.almostDue![indexPath.row]
+        case 1:
+            currentItem = self.tableProject[tableView]!.notYetDue![indexPath.row]
+        case 2:
+            currentItem = self.tableProject[tableView]!.past![indexPath.row]
+        default:
+            break
+        }
+        
+        
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
             cell.item.transform = .init(scaleX: 0.9, y: 0.9)
         }) { _ in
@@ -302,7 +316,48 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             }, completion: { _ in
                 let alert = UIAlertController(title: cell.item.text, message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Add to Calendar", style: .default, handler: { (_) in
-                    
+                    let eventStore : EKEventStore = EKEventStore()
+
+                    // 'EKEntityTypeReminder' or 'EKEntityTypeEvent'
+
+                    eventStore.requestAccess(to: .event) { (granted, error) in
+
+                        if (granted) && (error == nil) {
+                            let event:EKEvent = EKEvent(eventStore: eventStore)
+                            
+                            event.title = self.tableProject[tableView]!.title + " - " + currentItem.content
+                            event.startDate = currentItem.startDate.getDateFormat()
+                            event.endDate = currentItem.dueDate.getDateFormat()
+                            event.calendar = eventStore.defaultCalendarForNewEvents
+                            do {
+                                try eventStore.save(event, span: .thisEvent)
+                                DispatchQueue.main.async {
+                                    SVProgressHUD.showSuccess(withStatus: nil)
+                                    SVProgressHUD.dismiss(withDelay: 3)
+                                    
+                                    let nc = UINavigationController()
+                                    let ek = EKEventViewController()
+                                    ek.delegate = self
+                                    ek.event = event
+                                    ek.allowsCalendarPreview = true
+                                    nc.addChild(ek)
+                                    self.present(nc, animated: true, completion: nil)
+                                    
+                                }
+                            } catch let error as NSError {
+                                DispatchQueue.main.async {
+                                    SVProgressHUD.showError(withStatus: "An Error occurred.\n\(error)")
+                                    SVProgressHUD.dismiss(withDelay: 3)
+                                }
+                            }
+                        }
+                        else{
+                            DispatchQueue.main.async {
+                                SVProgressHUD.showError(withStatus: "An Error occurred.")
+                                SVProgressHUD.dismiss(withDelay: 3)
+                            }
+                        }
+                    }
                 }))
                 if session.getUser()?.Name == cell.inCharge.text {
                     alert.addAction(UIAlertAction(title: "Mark as Completed", style: .default, handler: { (_) in
@@ -341,6 +396,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }, completion: nil)
     }
     
+    //MARK: - DELEGATE: EKEVENTVIEW
+    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
+        switch action {
+        case .done:
+            controller.dismiss(animated: true, completion: nil)
+        case .deleted:
+            DispatchQueue.main.async {
+                SVProgressHUD.showSuccess(withStatus: "Deleted")
+                SVProgressHUD.dismiss(withDelay: 3)
+            }
+            controller.dismiss(animated: true, completion: nil)
+        default:
+            break
+        }
+    }
+    
     //MARK: - SETUP
     func delegate(){
         plans.delegate = self
@@ -362,7 +433,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg"))
     }
-    
+       
     //MARK: - VIEW LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
