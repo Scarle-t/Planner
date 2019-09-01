@@ -17,4 +17,11 @@ class planCell: UICollectionViewCell{
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var actionBtn: UIButton!
     @IBOutlet weak var details: UITextView!
+    @IBOutlet weak var dueDate: UILabel!
+}
+
+class itemCell: UITableViewCell{
+    @IBOutlet weak var inCharge: UILabel!
+    @IBOutlet weak var dueDate: UILabel!
+    @IBOutlet weak var item: UILabel!
 }

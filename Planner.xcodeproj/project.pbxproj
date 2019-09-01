@@ -37,6 +37,7 @@
 		A6C3101A23089E5D00A02761 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C3101923089E5D00A02761 /* QuartzCore.framework */; };
 		A6E407182305A54D00441C4F /* CardsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */; };
 		A6F28F8E230F61AB00DAC25F /* addProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F28F8D230F61AB00DAC25F /* addProjects.swift */; };
+		A6F39EAB231BC2910015B1CF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F39EAA231BC2910015B1CF /* Date.swift */; };
 		A6F838EB2308A14600818A76 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F838EA2308A14600818A76 /* Project.swift */; };
 		A6F838ED2308A15000818A76 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F838EC2308A15000818A76 /* Item.swift */; };
 		A6F838EF2308A1F200818A76 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F838EE2308A1F200818A76 /* Session.swift */; };
@@ -82,6 +83,7 @@
 		A6C3102123089F7E00A02761 /* bridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridgingHeader.h; sourceTree = "<group>"; };
 		A6E407172305A54D00441C4F /* CardsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		A6F28F8D230F61AB00DAC25F /* addProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addProjects.swift; sourceTree = "<group>"; };
+		A6F39EAA231BC2910015B1CF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A6F838EA2308A14600818A76 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		A6F838EC2308A15000818A76 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A6F838EE2308A1F200818A76 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				A6F838EC2308A15000818A76 /* Item.swift */,
 				A6F838EA2308A14600818A76 /* Project.swift */,
 				A66A819F230978A400DD6278 /* Staff.swift */,
+				A6F39EAA231BC2910015B1CF /* Date.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				A6B6F4E72304654C00CFBC02 /* extensions.swift in Sources */,
 				A6B462CA230CA89E0010728E /* UserSettings.swift in Sources */,
 				A6C3101423089E4200A02761 /* SVProgressAnimatedView.m in Sources */,
+				A6F39EAB231BC2910015B1CF /* Date.swift in Sources */,
 				A6F28F8E230F61AB00DAC25F /* addProjects.swift in Sources */,
 				A6C3100523089DE000A02761 /* JSONParser.swift in Sources */,
 				A6F838EB2308A14600818A76 /* Project.swift in Sources */,
@@ -497,7 +501,7 @@
 				CODE_SIGN_ENTITLEMENTS = Planner/Planner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = Planner/Info.plist;
@@ -522,7 +526,7 @@
 				CODE_SIGN_ENTITLEMENTS = Planner/Planner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = Planner/Info.plist;

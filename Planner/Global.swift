@@ -57,6 +57,7 @@ func populatePlanCell(cell: planCell, item project: Project, showAuthor isAuthor
             items.append(i)
         }
         project.items = items
+        project.sortItems()
         DispatchQueue.main.async {
             cell.itemList.reloadData()
         }
@@ -65,4 +66,5 @@ func populatePlanCell(cell: planCell, item project: Project, showAuthor isAuthor
     cell.planTitle.text = project.title
     cell.author.text = isAuthor ? project.author : ("Status: " + project.status)
     cell.details.text = project.details
+    cell.dueDate.text = "Due: " + project.dueDate.getDateFormat(shortForm: false)
 }

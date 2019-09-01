@@ -231,28 +231,95 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: - DELEGATE - TABLE VIEW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableProject[tableView]?.items?.count ?? 0
+        guard let proj = tableProject[tableView] else {return 0}
+        switch section{
+        case 0:
+            return proj.almostDue?.count ?? 0
+        case 1:
+            return proj.notYetDue?.count ?? 0
+        case 2:
+            return proj.past?.count ?? 0
+        default:
+            break
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! itemCell
         
-        guard let item = tableProject[tableView]?.items, item.count != 0 else {return cell}
+        guard let almostDue = tableProject[tableView]?.almostDue, let notYetDue = tableProject[tableView]?.notYetDue, let past = tableProject[tableView]?.past else {return cell}
         
-        cell.textLabel?.text = item[indexPath.row].content
+        switch indexPath.section{
+        case 0:
+            cell.item.text = almostDue[indexPath.row].content
+            cell.dueDate.text = "Due: " + almostDue[indexPath.row].dueDate.getDateFormat(shortForm: true)
+            cell.inCharge.text = almostDue[indexPath.row].inCharge
+            cell.dueDate.textColor = .black
+        case 1:
+            cell.item.text = notYetDue[indexPath.row].content
+            cell.dueDate.text = "Due: " + notYetDue[indexPath.row].dueDate.getDateFormat(shortForm: true)
+            cell.inCharge.text = notYetDue[indexPath.row].inCharge
+            cell.dueDate.textColor = .black
+        case 2:
+            cell.item.text = past[indexPath.row].content
+            cell.dueDate.text = "Due: " + past[indexPath.row].dueDate.getDateFormat(shortForm: true)
+            cell.inCharge.text = past[indexPath.row].inCharge
+            cell.dueDate.textColor = .systemRed
+        default:
+            break
+        }
         
         return cell
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section{
+        case 0:
+            return "Almost Due"
+        case 1:
+            return "Up coming"
+        case 2:
+            return "Overdue"
+        default:
+            break
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        itemTransform = cell!.textLabel!.transform
+        let cell = tableView.cellForRow(at: indexPath) as! itemCell
+        itemTransform = cell.item.transform
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
-            cell?.textLabel?.transform = .init(scaleX: 0.9, y: 0.9)
+            cell.item.transform = .init(scaleX: 0.9, y: 0.9)
         }) { _ in
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-                cell?.textLabel?.transform = self.itemTransform
-            }, completion: nil)
+                cell.item.transform = self.itemTransform
+            }, completion: { _ in
+                let alert = UIAlertController(title: cell.item.text, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Add to Calendar", style: .default, handler: { (_) in
+                    
+                }))
+                if session.getUser()?.Name == cell.inCharge.text {
+                    alert.addAction(UIAlertAction(title: "Mark as Completed", style: .default, handler: { (_) in
+                        
+                    }))
+                    
+                    alert.addAction(UIAlertAction(title: "Request Extension", style: .destructive, handler: { (_) in
+                        
+                    }))
+                }else{
+                    alert.addAction(UIAlertAction(title: "Notify " + cell.inCharge.text!, style: .default, handler: { (_) in
+                        
+                    }))
+                }
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            })
         }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -260,17 +327,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        itemTransform = cell!.textLabel!.transform
+        let cell = tableView.cellForRow(at: indexPath) as! itemCell
+        itemTransform = cell.item.transform
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-            cell?.textLabel?.transform = .init(scaleX: 0.9, y: 0.9)
+            cell.item.transform = .init(scaleX: 0.9, y: 0.9)
         }, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        let cell = tableView.cellForRow(at: indexPath) as! itemCell
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-            cell?.textLabel?.transform = self.itemTransform
+            cell.item.transform = self.itemTransform
         }, completion: nil)
     }
     

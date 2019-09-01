@@ -39,43 +39,77 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="439"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </view>
-                                                <tableView clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" indicatorStyle="black" canCancelContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Na7-es-6wT">
-                                                    <rect key="frame" x="9" y="94" width="397" height="345"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" focusStyle="custom" textLabel="Fw7-t4-FzB" style="IBUITableViewCellStyleDefault" id="FSR-nz-ns0">
-                                                            <rect key="frame" x="0.0" y="55.5" width="397" height="45.5"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FSR-nz-ns0" id="RSS-1y-gGz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="397" height="45.5"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" id="Fw7-t4-FzB">
-                                                                        <rect key="frame" x="20" y="0.0" width="357" height="45.5"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </tableViewCellContentView>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </tableViewCell>
-                                                    </prototypes>
-                                                    <sections/>
-                                                </tableView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BKv-Yz-h9e">
                                                     <rect key="frame" x="9" y="94" width="397" height="345"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
                                                 </textView>
+                                                <tableView clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" indicatorStyle="black" canCancelContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Na7-es-6wT">
+                                                    <rect key="frame" x="9" y="94" width="397" height="345"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" focusStyle="custom" rowHeight="61" id="FSR-nz-ns0" customClass="itemCell" customModule="Planner" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="55.5" width="397" height="61"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FSR-nz-ns0" id="RSS-1y-gGz">
+                                                                <rect key="frame" x="0.0" y="0.0" width="397" height="61"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UlG-VY-RoI">
+                                                                        <rect key="frame" x="342" y="11" width="35" height="39"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="39" id="E6A-ws-AHN"/>
+                                                                            <constraint firstAttribute="width" constant="35" id="Iuc-oZ-Vhv"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Eo2-oL-bfA">
+                                                                        <rect key="frame" x="20" y="36" width="314" height="19"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="19" id="uU6-Ul-AvN"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV2-f3-prD">
+                                                                        <rect key="frame" x="20" y="5" width="314" height="23"/>
+                                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="UlG-VY-RoI" firstAttribute="top" secondItem="RSS-1y-gGz" secondAttribute="top" constant="11" id="87F-dL-Jhp"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Eo2-oL-bfA" secondAttribute="bottom" constant="6" id="9Vb-ga-puS"/>
+                                                                    <constraint firstItem="UlG-VY-RoI" firstAttribute="leading" secondItem="GV2-f3-prD" secondAttribute="trailing" constant="8" id="DzG-pT-9Kj"/>
+                                                                    <constraint firstItem="GV2-f3-prD" firstAttribute="top" secondItem="RSS-1y-gGz" secondAttribute="top" constant="5" id="Ht7-CT-6bv"/>
+                                                                    <constraint firstItem="UlG-VY-RoI" firstAttribute="leading" secondItem="Eo2-oL-bfA" secondAttribute="trailing" constant="8" id="XqR-mE-v9Z"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="UlG-VY-RoI" secondAttribute="trailing" constant="20" id="h7P-Ja-xKA"/>
+                                                                    <constraint firstItem="GV2-f3-prD" firstAttribute="leading" secondItem="RSS-1y-gGz" secondAttribute="leading" constant="20" id="meN-hT-VlJ"/>
+                                                                    <constraint firstItem="Eo2-oL-bfA" firstAttribute="leading" secondItem="RSS-1y-gGz" secondAttribute="leading" constant="20" id="vh3-dV-i7p"/>
+                                                                    <constraint firstItem="Eo2-oL-bfA" firstAttribute="top" secondItem="GV2-f3-prD" secondAttribute="bottom" constant="8" id="y7K-5L-I0b"/>
+                                                                </constraints>
+                                                            </tableViewCellContentView>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <connections>
+                                                                <outlet property="dueDate" destination="Eo2-oL-bfA" id="9Ur-5P-PRA"/>
+                                                                <outlet property="inCharge" destination="UlG-VY-RoI" id="IOa-Vd-Wu4"/>
+                                                                <outlet property="item" destination="GV2-f3-prD" id="ERY-n8-cg0"/>
+                                                            </connections>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                    <sections/>
+                                                </tableView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcdefghijklmnopqrstuvwxyz" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="riM-O8-KBp">
                                                     <rect key="frame" x="44" y="8" width="325" height="55"/>
                                                     <constraints>
@@ -96,9 +130,18 @@
                                                         <action selector="actionMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bdN-Mg-VAs"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwA-DV-KK3">
-                                                    <rect key="frame" x="9" y="70" width="393" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qwA-DV-KK3">
+                                                    <rect key="frame" x="241.5" y="70" width="160.5" height="16"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5oq-LM-gdA">
+                                                    <rect key="frame" x="74.5" y="70" width="159" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="159" id="Ibd-Xm-js2"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="14"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -131,10 +174,12 @@
                                                 <constraint firstItem="qwA-DV-KK3" firstAttribute="top" secondItem="riM-O8-KBp" secondAttribute="bottom" constant="7" id="Znw-fR-iYd"/>
                                                 <constraint firstItem="4yD-d5-P3k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="riM-O8-KBp" secondAttribute="trailing" constant="8" id="a9w-7b-Hwd"/>
                                                 <constraint firstAttribute="trailing" secondItem="qwA-DV-KK3" secondAttribute="trailing" constant="12" id="eeq-Uf-yGN"/>
+                                                <constraint firstItem="5oq-LM-gdA" firstAttribute="top" secondItem="riM-O8-KBp" secondAttribute="bottom" constant="7" id="g9f-3Z-1Ze"/>
                                                 <constraint firstItem="Na7-es-6wT" firstAttribute="leading" secondItem="4Zi-C0-6TZ" secondAttribute="leading" constant="9" id="geS-4p-g4e"/>
-                                                <constraint firstItem="qwA-DV-KK3" firstAttribute="leading" secondItem="4Zi-C0-6TZ" secondAttribute="leading" constant="9" id="ghV-AP-ySx"/>
                                                 <constraint firstAttribute="trailing" secondItem="BKv-Yz-h9e" secondAttribute="trailing" constant="8" id="gtV-2G-rUm"/>
                                                 <constraint firstAttribute="trailing" secondItem="Na7-es-6wT" secondAttribute="trailing" constant="8" id="i5n-oF-I4s"/>
+                                                <constraint firstItem="qwA-DV-KK3" firstAttribute="leading" secondItem="5oq-LM-gdA" secondAttribute="trailing" constant="8" id="ohv-AO-Jvm"/>
+                                                <constraint firstItem="5oq-LM-gdA" firstAttribute="leading" secondItem="4Zi-C0-6TZ" secondAttribute="leading" constant="74.5" id="ph6-tY-GK1"/>
                                                 <constraint firstItem="4yD-d5-P3k" firstAttribute="top" secondItem="4Zi-C0-6TZ" secondAttribute="top" constant="26" id="rpk-ad-JsF"/>
                                                 <constraint firstAttribute="bottom" secondItem="LA4-AJ-fQh" secondAttribute="bottom" id="yT0-tA-0Pu"/>
                                                 <constraint firstItem="LA4-AJ-fQh" firstAttribute="leading" secondItem="4Zi-C0-6TZ" secondAttribute="leading" id="zwp-lr-xyS"/>
@@ -147,6 +192,7 @@
                                             <outlet property="author" destination="qwA-DV-KK3" id="Vek-x6-OTM"/>
                                             <outlet property="closeBtn" destination="rWP-Ff-z8y" id="Hov-hY-oxw"/>
                                             <outlet property="details" destination="BKv-Yz-h9e" id="5iv-hE-yub"/>
+                                            <outlet property="dueDate" destination="5oq-LM-gdA" id="IXa-vn-hag"/>
                                             <outlet property="gradView" destination="LA4-AJ-fQh" id="UJw-zN-h8s"/>
                                             <outlet property="itemList" destination="Na7-es-6wT" id="hzl-DF-5lD"/>
                                             <outlet property="planTitle" destination="riM-O8-KBp" id="OA7-d5-AZB"/>
