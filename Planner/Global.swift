@@ -64,7 +64,7 @@ func populatePlanCell(cell: planCell, item project: Project, showAuthor isAuthor
     }
     
     cell.planTitle.text = project.title
-    cell.author.text = isAuthor ? project.author : ("Status: " + project.status)
+    cell.author.text = isAuthor ? project.author : project.status
     cell.details.text = project.details
     cell.dueDate.text = "Due: " + project.dueDate.getStringFormat(shortForm: false)
 }

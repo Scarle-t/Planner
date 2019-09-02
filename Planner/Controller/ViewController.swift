@@ -246,6 +246,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return 0
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! itemCell
         
@@ -270,12 +274,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         default:
             break
         }
-        
         return cell
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -306,7 +305,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         default:
             break
         }
-        
         
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
             cell.item.transform = .init(scaleX: 0.9, y: 0.9)
@@ -358,6 +356,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             }
                         }
                     }
+                }))
+                alert.addAction(UIAlertAction(title: "Remarks", style: .default, handler: { (_) in
+                    
                 }))
                 if session.getUser()?.Name == cell.inCharge.text {
                     alert.addAction(UIAlertAction(title: "Mark as Completed", style: .default, handler: { (_) in
