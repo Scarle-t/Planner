@@ -315,6 +315,8 @@ class Requests: UIViewController, UICollectionViewDelegate, UICollectionViewData
                     
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.popoverPresentationController?.sourceView = cell
+                alert.popoverPresentationController?.sourceRect = cell.bounds
                 self.present(alert, animated: true, completion: nil)
             })
         }
