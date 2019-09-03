@@ -192,14 +192,14 @@ class Requests: UIViewController, UICollectionViewDelegate, UICollectionViewData
         cellTransform = cell.transform
         cell.superview?.bringSubviewToFront(cell)
         
-        let cellRatioX = collectionView.bounds.width / cell.bounds.width
+//        let cellRatioX = collectionView.bounds.width / cell.bounds.width
         let cellRatioY = collectionView.bounds.height / cell.bounds.height
         
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
             cell.transform = .identity
         }) { _ in
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-                cell.transform = .init(scaleX: cellRatioX, y: cellRatioY)
+                cell.transform = .init(scaleX: cellRatioY, y: cellRatioY)
                 cell.closeBtn.alpha = 1
                 cell.actionBtn.alpha = 1
                 collectionView.layer.shadowOpacity = 0.0
@@ -349,7 +349,7 @@ class Requests: UIViewController, UICollectionViewDelegate, UICollectionViewData
     func layout(){
         plans.collectionViewLayout = CardsCollectionViewLayout()
         let layout = plans.collectionViewLayout as! CardsCollectionViewLayout
-        layout.itemSize = .init(width: plans.bounds.width * 0.75, height: plans.bounds.height * 0.75)
+        layout.itemSize = .init(width: plans.bounds.width * 0.75, height: plans.bounds.width * 0.75 * (plans.bounds.height / plans.bounds.width))
         layout.spacing = 30
         plans.isPagingEnabled = true
         plans.showsHorizontalScrollIndicator = false

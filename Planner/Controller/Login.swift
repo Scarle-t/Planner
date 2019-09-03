@@ -183,6 +183,13 @@ class Login: UIViewController, NetworkDelegate{
     }
     
     func setup(){
+        SVProgressHUD.setHapticsEnabled(true)
+        SVProgressHUD.setMinimumSize(CGSize(width: 120, height: 120))
+        SVProgressHUD.setFont(UIFont(name: "Futura-Medium", size: 20)!)
+        SVProgressHUD.setDefaultMaskType(.black)
+        if #available(iOS 13.0, *){
+            SVProgressHUD.setOffsetFromCenter(UIOffset.init(horizontal: 190, vertical: 370))
+        }
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
         view.addGestureRecognizer(tap)
         defaults.bool(forKey: "useBio") ? (bioLock.isEnabled = true) : (bioLock.isEnabled = false)

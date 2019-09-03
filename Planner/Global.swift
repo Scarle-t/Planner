@@ -41,8 +41,8 @@ func populatePlanCell(cell: planCell, item project: Project, showAuthor isAuthor
     
     let gradLayer = CAGradientLayer()
     gradLayer.frame = cell.bounds
-    let startColor = startColors[project.PID - 1 % startColors.count]
-    let endColor = endColors[project.PID - 1 % endColors.count]
+    let startColor = startColors[(project.PID - 1) % startColors.count]
+    let endColor = endColors[(project.PID - 1) % endColors.count]
     gradLayer.colors = [startColor, endColor]
     cell.gradView.layer.addSublayer(gradLayer)
     
